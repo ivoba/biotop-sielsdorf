@@ -1,10 +1,11 @@
 # todo
 
 - fonts
-- her images
+- fix sorting
 - imprint/privacy
-- logo
-- remove preact
 - Image component
 - card
 - collaboration with online editor like stackblitz
+- favicon
+- move to MDX https://docs.astro.build/en/guides/integrations-guide/mdx/
+- move beobachtungen to frontmatter and make list a component
