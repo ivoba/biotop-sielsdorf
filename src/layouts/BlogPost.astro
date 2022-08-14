@@ -1,6 +1,7 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
+import Footer from '../components/Footer.astro';
 
 export interface Props {
 	content: {
@@ -25,8 +26,9 @@ const {
 	</head>
 
 	<body>
+	    <main>
 		<Header />
-		<article class="wrapper content">
+		<article>
 			<header>
 				{heroImage && (
 					<img
@@ -44,6 +46,8 @@ const {
 				<slot></slot>
 			</main>
 		</article>
+		</main>
+		<Footer />
 	</body>
 </html>
 

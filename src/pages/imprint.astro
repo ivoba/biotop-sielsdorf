@@ -1,0 +1,53 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import BlogPostPreview from '../components/BlogPostPreview.astro';
+
+let title = 'Impressum / Datenschutz';
+let description = 'Impressum / Datenschutz';
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+
+	<body>
+		<Header />
+        <main>
+            <article>
+            <section>
+                <h1>{title}</h1>
+                <p>
+                   Verantwortliche: <br />
+                   BUND Ortsgruppe Hürth
+                   Andreas Palm Sudetenstr. 40 50354 Hürth
+
+                </p>
+                <p>
+                   Webseite & Inhalt: <br />
+                   <a href="https://ivo-bathke.name">Ivo Bathke</a> <br />
+                   <a href="mailto:ivo.bathke@bund-rhein-erft.de">ivo.bathke@bund-rhein-erft.de</a>
+                </p>
+            </section>
+            <section>
+                <h2>Datenschutz</h2>
+                <p>
+                  <h3>Personenbezogene Daten</h3>
+                  Sie können unsere Webseite ohne Angabe personenbezogener Daten besuchen.<br>
+                  Auf dieser Website werden keine Daten vom Betreiber verarbeitet.
+                  <h3>Transportdaten</h3>
+                  Diese Seite liegt bei Github Pages.<br>
+                  Daher gilt im Bezug auf Transportdaten (z.B. IP-Adressen) die <a href="https://help.github.com/en/articles/github-privacy-statement#github-pages" target="_blank" rel="noopener noreferrer">Datenschutzerklärung von Github Pages</a>.
+                </p>
+            </section>
+            </article>
+        </main>
+        <Footer/>
+	</body>
+</html>
+
+<style>
+
+</style>
