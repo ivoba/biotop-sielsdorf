@@ -8,30 +8,42 @@ export interface Props {
 	observations: Observation[];
 }
 
+function chunk(arr, n) {
+    return arr.reduce(function (p, c, i) {
+    if (i % n === 0) p.push([]);
+    p[p.length - 1].push(c);
+    return p;
+    }, []);
+}
+
 const { observations } = Astro.props as Props;
+
+const chunkedObservations = chunk(observations, 2);
 
 ---
 
 <hr/>
 <strong>Neueste Beobachtungen:</strong>
-
-<div class="grid">
-{observations.map(({ title, img, body }, index) =>  (
-         <div>
-         <article>
-            <header>
-                {title}
-            </header>
-            <main>
-            <img src={img} alt={title} />
-            </main>
-            <footer>
-                {body}
-            </footer>
-        </article>
-        </div>
-))}
-</div>
+{chunkedObservations.map((observations, index) => (
+    <div class="grid">
+    {observations.map(({ title, img, body }, index) =>  (
+              <div>
+              <article>
+                 <header>
+                     {title}
+                 </header>
+                 <main>
+                 <img src={img} alt={title} />
+                 </main>
+                 <footer>
+                     {body}
+                 </footer>
+             </article>
+             </div>
+     ))}
+    </div>
+))
+}
 <style>
     article {
     }
