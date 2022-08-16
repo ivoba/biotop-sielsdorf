@@ -13,7 +13,6 @@ Built with [Astro](https://astro.build).
 - Image component
 - collaboration with online editor like stackblitz
 - social.png
-- github pages online stage
-  https://github.com/withastro/action
 - move to MDX https://docs.astro.build/en/guides/integrations-guide/mdx/
 - chunk as lib
+- make CNAME for sielsdorf.bund-huerth.de
