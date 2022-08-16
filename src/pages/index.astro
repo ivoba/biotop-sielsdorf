@@ -7,13 +7,23 @@ import BlogPostPreview from '../components/BlogPostPreview.astro';
 let title = 'Biotop Sielsdorf';
 let description = 'Projektseite des Biotop Hürth Sielsdorf.';
 
+// todo make a lib
+function chunk(arr, n) {
+    return arr.reduce(function (p, c, i) {
+    if (i % n === 0) p.push([]);
+    p[p.length - 1].push(c);
+    return p;
+    }, []);
+}
+
 // Use Astro.glob to fetch all post with associated frontmatter
-const unsortedPosts = await Astro.glob('./posts/*.md');
-const posts = unsortedPosts.sort(function (a, b) {
+const unsortedPosts = await Astro.glob('./posts/*.md')
+const sortedPosts = unsortedPosts.sort(function (a, b) {
 	return (
 		new Date(a.frontmatter.publishDate).valueOf() - new Date(b.frontmatter.publishDate).valueOf()
-	);
+	)
 });
+const posts = chunk(sortedPosts, 2)
 ---
 
 <html lang="en">
@@ -29,16 +39,19 @@ const posts = unsortedPosts.sort(function (a, b) {
                 <p>{description} Betreut vom <a href="https://bund-rhein-erft.de/huerth">BUND Hürth</a></p>
             </section>
             <section aria-label="Blog post list">
-                <div class="grid">
-                {posts.map(({ url, frontmatter }) => (
-                    <BlogPostPreview
-                        title={frontmatter.title}
-                        description={frontmatter.description}
-                        publishDate={frontmatter.publishDate}
-                        url={url}
-                    />
-                ))}
-                </div>
+                {posts.map((chunk, index) => (
+                    <div class="grid">
+                        {chunk.map(({ url, frontmatter }) => (
+                            <BlogPostPreview
+                                title={frontmatter.title}
+                                description={frontmatter.description}
+                                publishDate={frontmatter.publishDate}
+                                url={url}
+                            />
+                        ))}
+                    </div>
+                ))
+                }
             </section>
         </main>
         <Footer/>
