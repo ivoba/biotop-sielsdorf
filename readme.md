@@ -15,4 +15,4 @@ Built with [Astro](https://astro.build).
 - social.png
 - move to MDX https://docs.astro.build/en/guides/integrations-guide/mdx/
 - chunk as lib
-- make CNAME for sielsdorf.bund-huerth.de
+- https://www.npmjs.com/package/astro-compress

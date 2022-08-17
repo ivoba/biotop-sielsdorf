@@ -8,17 +8,10 @@ export interface Props {
 	observations: Observation[];
 }
 
-function chunk(arr, n) {
-    return arr.reduce(function (p, c, i) {
-    if (i % n === 0) p.push([]);
-    p[p.length - 1].push(c);
-    return p;
-    }, []);
-}
-
+import {chunkArray} from '../helper';
 const { observations } = Astro.props as Props;
 
-const chunkedObservations = chunk(observations, 2);
+const chunkedObservations = chunkArray(observations, 2);
 
 ---
 

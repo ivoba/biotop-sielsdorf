@@ -3,27 +3,19 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import BlogPostPreview from '../components/BlogPostPreview.astro';
+import {chunkArray, dateParser} from '../helper'
 
 let title = 'Biotop Sielsdorf';
 let description = 'Projektseite des Biotop Hürth Sielsdorf.';
-
-// todo make a lib
-function chunk(arr, n) {
-    return arr.reduce(function (p, c, i) {
-    if (i % n === 0) p.push([]);
-    p[p.length - 1].push(c);
-    return p;
-    }, []);
-}
 
 // Use Astro.glob to fetch all post with associated frontmatter
 const unsortedPosts = await Astro.glob('./posts/*.md')
 const sortedPosts = unsortedPosts.sort(function (a, b) {
 	return (
-		new Date(a.frontmatter.publishDate).valueOf() - new Date(b.frontmatter.publishDate).valueOf()
+		new Date(dateParser(b.frontmatter.publishDate)).valueOf() - new Date(dateParser(a.frontmatter.publishDate)).valueOf()
 	)
 });
-const posts = chunk(sortedPosts, 2)
+const posts = chunkArray(sortedPosts, 2)
 ---
 
 <html lang="en">
