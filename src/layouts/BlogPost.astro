@@ -2,6 +2,7 @@
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from '../components/Footer.astro';
+import { Picture } from '@astrojs/image/components';
 
 export interface Props {
 	content: {
@@ -31,13 +32,7 @@ const {
 		<article>
 			<header>
 				{heroImage && (
-					<img
-						width="720"
-						height="420"
-						loading="lazy"
-						src={heroImage.src}
-						alt={heroImage.alt}
-					/>
+				<Picture src={import(heroImage.src)} widths={[200, 400, 800]} sizes="(max-width: 800px) 100vw, 800px" formats={['avif', 'jpeg', 'png', 'webp']} alt={heroImage.alt} />
 				)}
 				<h1 class="title">{title}</h1>
 				<time>{publishDate}</time>

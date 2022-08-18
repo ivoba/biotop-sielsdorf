@@ -9,10 +9,9 @@ Built with [Astro](https://astro.build).
 
 # todo
 
-- fix sorting
-- Image component
+- Blindschleichen bild einbauen
+- Image component in Cards
 - collaboration with online editor like stackblitz
 - social.png
 - move to MDX https://docs.astro.build/en/guides/integrations-guide/mdx/
-- chunk as lib
 - https://www.npmjs.com/package/astro-compress
