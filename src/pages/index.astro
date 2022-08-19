@@ -9,7 +9,7 @@ let title = 'Biotop Sielsdorf';
 let description = 'Projektseite des Biotop Hürth Sielsdorf.';
 
 // Use Astro.glob to fetch all post with associated frontmatter
-const unsortedPosts = await Astro.glob('./posts/*.md')
+const unsortedPosts = await Astro.glob('./posts/*.mdx')
 const sortedPosts = unsortedPosts.sort(function (a, b) {
 	return (
 		new Date(dateParser(b.frontmatter.publishDate)).valueOf() - new Date(dateParser(a.frontmatter.publishDate)).valueOf()

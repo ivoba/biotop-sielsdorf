@@ -8,10 +8,7 @@ Built with [Astro](https://astro.build).
 - https://google-webfonts-helper.herokuapp.com/fonts/ibm-plex-sans?subsets=latin
 
 # todo
-
-- Blindschleichen bild einbauen
 - Image component in Cards
 - collaboration with online editor like stackblitz
 - social.png
-- move to MDX https://docs.astro.build/en/guides/integrations-guide/mdx/
 - https://www.npmjs.com/package/astro-compress
