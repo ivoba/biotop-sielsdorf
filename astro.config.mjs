@@ -12,7 +12,7 @@ export default defineConfig({
 	vite: {
 		server: {
 			watch: {
-				ignored: ['/.idea/workspace.xml']
+				ignored: ['.idea/**']
 			}
 		}
 	}
