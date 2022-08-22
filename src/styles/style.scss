@@ -10,23 +10,18 @@
   --theme-text: #127475;
   --grid-spacing-horizontal: 1rem;
   --grid-spacing-vertical: 1rem;
-  --block-spacing-horizontal: calc (varl(--spacing) *0.5);
-  
+  --block-spacing-horizontal: calc (var(--spacing) *0.5);
 }
 [data-theme=light],
 :root:not([data-theme=dark]) {
   --primary:#127475;
   background-color: white;
-  
-}
-
-:hover{
-  color: #8A2C2C;
+  --primary-hover: #8A2C2C;
 }
 
 article {
   background-color:#EAE1DF;
-  
+
 }
 
 p {

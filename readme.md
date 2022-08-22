@@ -13,3 +13,4 @@ Built with [Astro](https://astro.build).
 - collaboration with online editor like stackblitz
 - social.png
 - https://www.npmjs.com/package/astro-compress
+- dark mode toggle
