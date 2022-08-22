@@ -7,14 +7,32 @@
   Apple Color Emoji, Segoe UI Emoji;
   --font-family: 'IBM Plex Sans', var(--font-fallback);;
   --spacing: 0.5rem;
-  --theme-text: #006062;
+  --theme-text: #127475;
   --grid-spacing-horizontal: 1rem;
   --grid-spacing-vertical: 1rem;
+  --block-spacing-horizontal: calc (varl(--spacing) *0.5);
+  
 }
 [data-theme=light],
 :root:not([data-theme=dark]) {
-  --primary: #006062;
+  --primary:#127475;
+  background-color: white;
+  
 }
+
+:hover{
+  color: #8A2C2C;
+}
+
+article {
+  background-color:#EAE1DF;
+  
+}
+
+p {
+  color: #127475;
+}
+
 
 /* ibm-plex-sans-regular - latin */
 @font-face {
