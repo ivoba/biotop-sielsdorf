@@ -14,3 +14,6 @@ Built with [Astro](https://astro.build).
 - social.png
 - https://www.npmjs.com/package/astro-compress
 - dark mode toggle
+- arten page:
+  render arten cards, group arten
+  

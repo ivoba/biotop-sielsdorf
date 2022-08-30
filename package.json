@@ -16,6 +16,7 @@
     "sass": "^1.54.4"
   },
   "dependencies": {
-    "@astrojs/image": "^0.3.4"
+    "@astrojs/image": "^0.3.4",
+    "csv": "^6.2.0"
   }
 }
