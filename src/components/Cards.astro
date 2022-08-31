@@ -11,7 +11,7 @@ export interface Props {
 import {chunkArray} from '../helper';
 const { observations } = Astro.props as Props;
 
-const chunkedObservations = chunkArray(observations, 2);
+const chunkedObservations = observations ? chunkArray(observations, 2) : [];
 
 ---
 

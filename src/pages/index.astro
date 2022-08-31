@@ -15,10 +15,10 @@ const sortedPosts = unsortedPosts.sort(function (a, b) {
 		new Date(dateParser(b.frontmatter.publishDate)).valueOf() - new Date(dateParser(a.frontmatter.publishDate)).valueOf()
 	)
 });
-const posts = chunkArray(sortedPosts, 2)
+    const posts = chunkArray(sortedPosts, 2)
 ---
 
-<html lang="en">
+<html lang="de">
 	<head>
 		<BaseHead title={title} description={description} />
 	</head>
