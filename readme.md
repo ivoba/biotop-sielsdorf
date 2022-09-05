@@ -8,8 +8,6 @@ Built with [Astro](https://astro.build).
 - https://google-webfonts-helper.herokuapp.com/fonts/ibm-plex-sans?subsets=latin
 
 # todo
-- Image component in Cards
-  wait for Image component to be fixed
 - collaboration with online editor like stackblitz
 - social.png
 - https://www.npmjs.com/package/astro-compress

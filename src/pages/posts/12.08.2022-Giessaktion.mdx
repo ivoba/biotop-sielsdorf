@@ -1,0 +1,27 @@
+---
+layout: "../../layouts/BlogPost.astro"
+title: "Gießaktion"
+description: "Wasser mitbringen, Tümpel füllen, Bäume gießen."
+publishDate: "12.08.2022"
+observations:
+  - title: "Wasserskorpion (Nepa cinerea)"
+    img: "/assets/blog/Nepa-cinerea.jpg"
+    body: "Eine aquatische Raubwanze. Bei uns im Bachtümpel am Wehr."
+  - title: "Großer Bachläufer (Velia caprai)"
+    img: "/assets/blog/Velia-caprai.jpg"
+    body: "Auch eine aquatische Wanze. Der etwas seltenere Cousin des Wasserläufers."
+heroImage:
+  src: "/assets/blog/giessaktion.jpg"
+  alt: "Gießaktion"
+---
+
+import Cards from '../../components/Cards.astro'
+
+Wir haben uns zu einer Gießaktion im Biotop verabredet.
+Die Tümpel sind fast alle trocken gefallen und die Bäume beginnen die Blätter abzuwerfen.
+
+Udo, Ivo, Sebastian und Andreas bringen in Kanistern und umfunktionierten Solarduschen ca 200 Liter Wasser ins Biotop.
+
+Tümpel werden aufgefüllt, Bäume und Pflanzen werden gegossen und Trinkschalen aufgestellt.
+
+<Cards observations={frontmatter.observations} />
