@@ -3,57 +3,14 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Category from '../components/Category.astro';
-import {parse, transform} from 'csv/sync';
-import {readFileSync} from 'fs';
+import { loadData } from '../dataloader';
 
-let title = 'Arten';
-let description = 'Kartierte Arten im Biotop';
+const title = 'Arten';
+const description = 'Kartierte Arten im Biotop';
+const jsonFile =  `./src/data/sorted.json`
+const csvFile = `./src/data/naturgucker.csv`
 
-// todo need to delete last ; in headline
-const input = readFileSync(`./src/data/naturgucker.csv`);
-const rawRecords = parse(input,{
-    delimiter: ';'
-});
-// todo maybe use object
-const refinedRecords = transform(rawRecords, function(data){
-    return [
-        data[7], // Datum
-        data[15], // Artengruppe
-        data[20], // Gattung
-        data[18], // Art
-        data[19], // Trivialname
-        data[33] // Link
-    ];
-});
-
-// sort by Artengruppe data[15]
-const grouped = refinedRecords.reduce((reduced, x) => {
-    reduced[x[1]] = reduced[x[1]] || []
-    let speciesName = `${x[3]} ${x[4]}`;
-    //(reduced[x[1]][speciesName] = reduced[x[1]][speciesName] || []).push(x);
-    // group by art
-    reduced[x[1]][speciesName] = x;
-    // todo count oberservations, take last observed, maybe by reducing again with count
-    // todo scrape image from page https://www.geeksforgeeks.org/scrape-content-from-dynamic-websites/
-    /*
-      https://naturgucker.de/?bild=-661094606 
-  NGIDn661094606
-
-  ------------
-  https://naturgucker.de/?bild=757111081
-  NGID757111081
-  
-  Über Flickr Api?
-  https://www.flickr.com/services/api/flickr.tags.getClusterPhotos.html
-  https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=096c3aed7604b3c8f574f9acf7644966&tags=NGID757111081&format=json&nojsoncallback=1&api_sig=d83851722a102760dedbd4dcecb9927b
-  From user naturgucker: https://www.flickr.com/photos/12639178@N07
-  https://www.flickr.com/photos/tags/ngid757111081
-    */
-    
-    return reduced;
-  }, {});
-//console.log(grouped);
-
+const sorted = await loadData(jsonFile, csvFile);
 ---
 
 <html lang="de">
@@ -69,9 +26,9 @@ const grouped = refinedRecords.reduce((reduced, x) => {
                 <p>{description}</p>
             </section>
             <section aria-label="species list">
-                {Object.keys(grouped).map(category => (
-                    <h2>{category}</h2>
-                    <Category title={category} category={grouped[category]} />
+                {Object.keys(sorted).map(category => (
+                    <h2>{category} ({Object.keys(sorted[category]).length})</h2>
+                    <Category title={category} category={sorted[category]} />
                     ))}
             </section>
         </main>

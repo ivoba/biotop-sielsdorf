@@ -1,33 +1,33 @@
 ---
 export interface Props {
-	title: string;
-	description: string;
-	publishDate: string;
-	url: string;
+  title: string;
+  description: string;
+  publishDate: string;
+  url: string;
 }
 
 const { title, description, publishDate, url } = Astro.props as Props;
 ---
 
 <article>
-	<header>
-		<time>{publishDate}</time>
-		<a href={url}><h2>{title}</h2></a>
-	</header>
-	<p>{description}</p>
-	<a href={url}>mehr</a>
+  <header>
+    <time>{publishDate}</time>
+    <a href={url}><h2>{title}</h2></a>
+  </header>
+  <p>{description}</p>
+  <a href={url}>mehr</a>
 </article>
 
 <style>
-	time {
-    	margin: 0;
-		color: var(--theme-text-lighter);
-	}
+  time {
+    margin: 0;
+    color: var(--theme-text-lighter);
+  }
 
-	h2 {
-		font-size: 2.25rem;
-		font-weight: 700;
-		color: var(--theme-text);
-        --typography-spacing-vertical: 0.5rem;
-	}
+  h2 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--theme-text);
+    --typography-spacing-vertical: 0.5rem;
+  }
 </style>

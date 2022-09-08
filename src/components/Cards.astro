@@ -1,41 +1,37 @@
 ---
 interface Observation {
-    title: string,
-    img: string,
-    body: string,
+  title: string;
+  img: string;
+  body: string;
 }
 export interface Props {
-	observations: Observation[];
+  observations: Observation[];
 }
 
-import {chunkArray} from '../helper';
+import { chunkArray } from "../helper";
 const { observations } = Astro.props as Props;
 
 const chunkedObservations = observations ? chunkArray(observations, 2) : [];
-
 ---
 
-<hr/>
+<hr />
 <strong>Neueste Beobachtungen:</strong>
-{chunkedObservations.map((observations, index) => (
+{
+  chunkedObservations.map((observations, index) => (
     <div class="grid">
-    {observations.map(({ title, img, body }, index) =>  (
-              <div>
-              <article>
-                 <header>
-                     {title}
-                 </header>
-                 <main>
-                 <img src={img} alt={title} />
-                 </main>
-                 <footer>
-                     {body}
-                 </footer>
-             </article>
-             </div>
-     ))}
+      {observations.map(({ title, img, body }, index) => (
+        <div>
+          <article>
+            <header>{title}</header>
+            <main>
+              <img src={img} alt={title} />
+            </main>
+            <footer>{body}</footer>
+          </article>
+        </div>
+      ))}
     </div>
-))
+  ))
 }
 <style>
 

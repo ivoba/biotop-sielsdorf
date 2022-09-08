@@ -1,39 +1,46 @@
 ---
-import {chunkArray} from '../helper'
+import { chunkArray } from "../helper";
 
 export interface Props {
-	title: string;
-	category: Object;
+  title: string;
+  category: Object;
 }
 
-const { title, category} = Astro.props as Props;
+const { title, category } = Astro.props as Props;
 
 //const species = Object.keys(category).reduce(function (r, k) { return r.concat(category[k]);}, []);
-const species = chunkArray(Object.values(category), 2)
-
+const species = chunkArray(Object.values(category), 2);
 ---
 
 <article>
-	{title}
-	{species.map(chunk => (
-		<div class="grid">
-			{chunk.map((specie) => (
-				<article>{specie[2]} ({specie[3]} {specie[4]})</article>
-			))}
-       </div>
-	))}
+  {
+    species.map((chunk) => (
+      <div class="grid">
+        {chunk.map((specie) => (
+          <article>
+            {specie.trivial} ({specie.art} {specie.name}) <br />
+            <img
+              src={
+                specie.image ? `/assets/arten/${specie.image}` : `/social.png`
+              }
+            />
+          </article>
+        ))}
+      </div>
+    ))
+  }
 </article>
 
 <style>
-	time {
-    	margin: 0;
-		color: var(--theme-text-lighter);
-	}
+  time {
+    margin: 0;
+    color: var(--theme-text-lighter);
+  }
 
-	h2 {
-		font-size: 2.25rem;
-		font-weight: 700;
-		color: var(--theme-text);
-        --typography-spacing-vertical: 0.5rem;
-	}
+  h2 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--theme-text);
+    --typography-spacing-vertical: 0.5rem;
+  }
 </style>
