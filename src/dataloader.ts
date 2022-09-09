@@ -4,6 +4,7 @@ import * as fs from "fs";
 import { readFileSync, writeFileSync } from "fs";
 import * as https from "https";
 import { pipeline } from "stream";
+import { Specie } from "./types";
 
 async function loadData(jsonFile: string, csvFile: string): Promise<Object> {
   let reload = false;
@@ -53,8 +54,7 @@ async function loadCsv(file: string): Promise<Object> {
   // delete first header row
   rawRecords.shift();
 
-  // todo type object
-  const refinedRecords = transform(rawRecords, (data) => ({
+  const refinedRecords = transform(rawRecords, (data): Specie => ({
     date: data[7],
     artengruppe: data[15],
     trivial: data[20],

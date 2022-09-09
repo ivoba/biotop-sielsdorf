@@ -2,6 +2,10 @@
 // Enable .grid class
 @import "../node_modules/@picocss/pico/scss/pico.classless";
 
+body {
+  margin: 0.5rem;
+}
+
 :root {
   --font-fallback: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
     sans-serif, Apple Color Emoji, Segoe UI Emoji;
@@ -55,7 +59,7 @@ p {
   grid-row-gap: var(--grid-spacing-vertical);
   display: grid;
   grid-template-columns: 1fr;
-  margin: 0;
+  //margin: 0;
 
   @if map-get($breakpoints, "lg") {
     @media (min-width: map-get($breakpoints, "lg")) {

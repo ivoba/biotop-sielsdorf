@@ -1,5 +1,7 @@
 ---
 import { chunkArray } from "../helper";
+import { Picture } from "@astrojs/image/components";
+import { Specie } from "../types";
 
 export interface Props {
   title: string;
@@ -16,13 +18,18 @@ const species = chunkArray(Object.values(category), 2);
   {
     species.map((chunk) => (
       <div class="grid">
-        {chunk.map((specie) => (
+        {chunk.map((specie: Specie) => (
           <article>
             {specie.trivial} ({specie.art} {specie.name}) <br />
-            <img
+            <Picture
               src={
                 specie.image ? `/assets/arten/${specie.image}` : `/social.png`
               }
+              widths={[200, 400, 800]}
+              aspectRatio={4 / 3}
+              sizes="(max-width: 800px) 100vw, 800px"
+              formats={["avif", "jpeg", "png", "webp"]}
+              alt={specie.trivial}
             />
           </article>
         ))}
