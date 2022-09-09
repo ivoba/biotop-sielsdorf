@@ -30,6 +30,8 @@ body {
 
 article {
   background-color: #eae1df;
+  margin-bottom: 0.5rem;
+  --block-spacing-vertical: calc(var(--spacing) * 1);
   
 }
 
@@ -81,6 +83,7 @@ a {
   @if map-get($breakpoints, "lg") {
     @media (min-width: map-get($breakpoints, "lg")) {
       grid-template-columns: repeat(auto-fit, minmax(0%, 1fr));
+      
     }
   }
 
