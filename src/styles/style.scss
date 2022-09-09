@@ -27,12 +27,25 @@ body {
   color: #8A2C2C;
 }
 
+
 article {
   background-color: #eae1df;
+  
+}
+
+time {
+  padding-left: 0.5rem;
 }
 
 p {
   color: #127475;
+  padding-left: 0.5rem;
+}
+
+a {
+  color: #8A2C2C;
+  padding-left: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 /* ibm-plex-sans-regular - latin */
@@ -79,4 +92,9 @@ p {
 h1 {
   --font-size: 2rem;
   --typography-spacing-vertical: 0.5rem;
+
 }
+
+ h2 {
+  padding-left: 0.5rem;
+ }
