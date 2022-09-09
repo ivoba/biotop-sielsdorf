@@ -1,0 +1,28 @@
+---
+layout: "../../layouts/BlogPost.astro"
+title: "Sperrmüll"
+description: "Sperrmüll und sterbender Igel."
+publishDate: "06.08.2022"
+observations:
+  - title: "Zweifarbiger Laubschnellkäfer (Athous bicolor)"
+    img: "/assets/blog/Athous-bicolor.jpg"
+    body: "Ein Schnellkäfer der Waldsäume."
+  - title: "Frühe Lehmwespe (Ancistrocerus nigricornis)"
+    img: "/assets/blog/Ancistrocerus-nigricornis.jpg"
+    body: "Die Lehmwespe könnte in den Insektenhotels von Erwin nisten, wahrscheinlich aber ist, dass sie in Stängeln von Brombeere oder Engelswurz nistet. Sie ist auch ein Raupenjäger."
+#heroImage:
+#  src: "/assets/blog/gerettete-flussbarsche.jpg"
+#  alt: "Gerettete Flußbarsche"
+---
+
+import Cards from "../../components/Cards.astro";
+
+Ivo hat Sperrmüll zum Bauhof gefahren.
+
+Leider wurde auch einen sterbenden jungen Igel im trockenen Bach gefunden.
+Der war nicht mehr zu retten. Vermutlich hat die Trockenheit ihm zugesetzt.
+
+Wir sollten mal überlegen wie wir Wasser länger im Biotop halten können:
+Teiche reparieren, Abfluss besser regeln, neue Microponds anlegen und auch Trinkschalen befüllen.
+
+<Cards observations={frontmatter.observations} />

@@ -1,102 +1,109 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
-import Footer from '../components/Footer.astro';
-//import { Picture } from '@astrojs/image/components';
+import Footer from "../components/Footer.astro";
+import { Picture } from "@astrojs/image/components";
 
 export interface Props {
-	content: {
-		title: string;
-		description: string;
-		publishDate: string;
-		heroImage?: {
-			src: string;
-			alt: string;
-		};
-	};
+  content: {
+    title: string;
+    description: string;
+    publishDate: string;
+    heroImage?: {
+      src: string;
+      alt: string;
+    };
+  };
 }
 
 const {
-	content: { title, description, publishDate, heroImage },
+  content: { title, description, publishDate, heroImage },
 } = Astro.props as Props;
 ---
 
-<html>
-	<head>
-		<BaseHead title={title} description={description} />
-	</head>
+<html lang="de">
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
 
-	<body>
-	    <Header />
-	    <main>
-		<article>
-			<header>
-				{heroImage && (
-				// <Picture src={import(heroImage.src)} widths={[200, 400, 800]} sizes="(max-width: 800px) 100vw, 800px" formats={['avif', 'jpeg', 'png', 'webp']} alt={heroImage.alt} />
-				<img src={heroImage.src} alt={heroImage.alt}/>
-				)}
-				<h1 class="title">{title}</h1>
-				<time>{publishDate}</time>
-			</header>
-			<main>
-				<slot></slot>
-			</main>
-		</article>
-		</main>
-		<Footer />
-	</body>
+  <body>
+    <Header />
+    <main>
+      <article>
+        <header>
+          {
+            heroImage && (
+              <Picture
+                src={heroImage.src}
+                widths={[200, 400, 800]}
+                aspectRatio={4 / 3}
+                sizes="(max-width: 800px) 100vw, 800px"
+                formats={["avif", "jpeg", "png", "webp"]}
+                alt={heroImage.alt}
+              />
+            )
+          }
+          <h1 class="title">{title}</h1>
+          <time>{publishDate}</time>
+        </header>
+        <main>
+          <slot />
+        </main>
+      </article>
+    </main>
+    <Footer />
+    <style>
+      img {
+        width: 100vw;
+        object-fit: cover;
+        object-position: center;
+        margin-top: 2rem;
+        margin-bottom: 4rem;
+        max-width: 1280px;
+      }
+
+      @media (max-width: 50em) {
+        img {
+          height: 260px;
+          margin-top: 0;
+          margin-bottom: 2rem;
+        }
+      }
+
+      .content {
+        margin-bottom: 8rem;
+      }
+
+      .content :global(h2) {
+        margin-top: 4rem;
+      }
+
+      header {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+
+        padding-bottom: 2rem;
+        margin-bottom: 2rem;
+        border-bottom: 4px solid var(--theme-divider);
+      }
+
+      .title,
+      time {
+        margin: 0;
+      }
+
+      time {
+        color: var(--theme-text-lighter);
+      }
+
+      .title {
+        font-size: 2.25rem;
+        font-weight: 700;
+      }
+    </style>
+  </body>
 </html>
-
-<style>
-	img {
-		width: 100vw;
-		object-fit: cover;
-		object-position: center;
-		margin-top: 2rem;
-		margin-bottom: 4rem;
-		max-width: 1280px;
-	}
-
-	@media (max-width: 50em) {
-		img {
-			height: 260px;
-			margin-top: 0;
-			margin-bottom: 2rem;
-		}
-	}
-
-	.content {
-		margin-bottom: 8rem;
-	}
-
-	.content :global(h2) {
-		margin-top: 4rem;
-	}
-
-	header {
-		display: flex;
-		flex-direction: column;
-		text-align: center;
-		align-items: center;
-		justify-content: center;
-		gap: 1rem;
-
-		padding-bottom: 2rem;
-		margin-bottom: 2rem;
-		border-bottom: 4px solid var(--theme-divider);
-	}
-
-	.title,
-	time {
-		margin: 0;
-	}
-
-	time {
-		color: var(--theme-text-lighter);
-	}
-
-	.title {
-		font-size: 2.25rem;
-		font-weight: 700;
-	}
-</style>

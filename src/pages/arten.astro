@@ -1,0 +1,42 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Category from '../components/Category.astro';
+import { loadData } from '../dataloader';
+
+const title = 'Arten';
+const description = 'Kartierte Arten im Biotop';
+const jsonFile =  `./src/data/sorted.json`
+const csvFile = `./src/data/naturgucker.csv`
+
+const sorted = await loadData(jsonFile, csvFile);
+// todo count arten
+---
+
+<html lang="de">
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+
+	<body>
+		<Header />
+        <main>
+            <section>
+                <h1>{title}</h1>
+                <p>{description}</p>
+            </section>
+            <section aria-label="species list">
+                {Object.keys(sorted).map(category => (
+                    <h2>{category} ({Object.keys(sorted[category]).length})</h2>
+                    <Category title={category} category={sorted[category]} />
+                    ))}
+            </section>
+        </main>
+        <Footer/>
+	</body>
+</html>
+
+<style>
+
+</style>

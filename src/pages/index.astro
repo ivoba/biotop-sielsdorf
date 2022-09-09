@@ -1,56 +1,60 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import BlogPostPreview from '../components/BlogPostPreview.astro';
-import {chunkArray, dateParser} from '../helper'
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import BlogPostPreview from "../components/BlogPostPreview.astro";
+import { chunkArray, dateParser } from "../helper";
 
-let title = 'Biotop Sielsdorf';
-let description = 'Projektseite des Biotop Hürth Sielsdorf.';
+let title = "Biotop Sielsdorf";
+let description = "Projektseite des Biotop Hürth Sielsdorf.";
 
 // Use Astro.glob to fetch all post with associated frontmatter
-const unsortedPosts = await Astro.glob('./posts/*.mdx')
+const unsortedPosts = await Astro.glob("./posts/*.mdx");
 const sortedPosts = unsortedPosts.sort(function (a, b) {
-	return (
-		new Date(dateParser(b.frontmatter.publishDate)).valueOf() - new Date(dateParser(a.frontmatter.publishDate)).valueOf()
-	)
+  return (
+    new Date(dateParser(b.frontmatter.publishDate)).valueOf() -
+    new Date(dateParser(a.frontmatter.publishDate)).valueOf()
+  );
 });
-const posts = chunkArray(sortedPosts, 2)
+const posts = chunkArray(sortedPosts, 2);
 ---
 
-<html lang="en">
-	<head>
-		<BaseHead title={title} description={description} />
-	</head>
+<html lang="de">
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
 
-	<body>
-		<Header />
-        <main>
-            <section>
-                <h1>{title}</h1>
-                <p>{description} Betreut vom <a href="https://bund-rhein-erft.de/huerth">BUND Hürth</a></p>
-            </section>
-            <section aria-label="Blog post list">
-                {posts.map((chunk, index) => (
-                    <div class="grid">
-                        {chunk.map(({ url, frontmatter }) => (
-                            <BlogPostPreview
-                                title={frontmatter.title}
-                                description={frontmatter.description}
-                                publishDate={frontmatter.publishDate}
-                                url={url}
-                            />
-                        ))}
-                    </div>
-                ))
-                }
-            </section>
-        </main>
-        <Footer/>
+  <body>
+    <Header />
+    <main>
+      <section>
+        <h1>{title}</h1>
+        <p>
+          {description} Betreut vom <a href="https://bund-rhein-erft.de/huerth"
+            >BUND Hürth</a>
+        </p>
+      </section>
+      <section aria-label="Blog post list">
+        {
+          posts.map((chunk, index) => (
+            <div class="grid">
+              {chunk.map(({ url, frontmatter }) => (
+                <BlogPostPreview
+                  title={frontmatter.title}
+                  description={frontmatter.description}
+                  publishDate={frontmatter.publishDate}
+                  url={url}
+                />
+              ))}
+            </div>
+          ))
+        }
+      </section>
+    </main>
+    <Footer />
 
-	</body>
+    <style>
+
+    </style>
+  </body>
 </html>
-
-<style>
-
-</style>

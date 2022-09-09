@@ -2,50 +2,60 @@
 // Enable .grid class
 @import "../node_modules/@picocss/pico/scss/pico.classless";
 
+body {
+  margin: 0.5rem;
+}
+
 :root {
-  --font-fallback: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif,
-  Apple Color Emoji, Segoe UI Emoji;
-  --font-family: 'IBM Plex Sans', var(--font-fallback);;
+  --font-fallback: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
+    sans-serif, Apple Color Emoji, Segoe UI Emoji;
+  --font-family: "IBM Plex Sans", var(--font-fallback);
   --spacing: 0.5rem;
   --theme-text: #127475;
   --grid-spacing-horizontal: 1rem;
   --grid-spacing-vertical: 1rem;
-  --block-spacing-horizontal: calc (varl(--spacing) *0.5);
-  
+  --block-spacing-horizontal: calc (var(--spacing) * 0.5);
 }
-[data-theme=light],
-:root:not([data-theme=dark]) {
-  --primary:#127475;
+[data-theme="light"],
+:root:not([data-theme="dark"]) {
+  --primary: #127475;
   background-color: white;
   
 }
 
-a :hover{
+:hover{
   color: #8A2C2C;
 }
 
 article {
-  background-color:#EAE1DF;
-  
+  background-color: #eae1df;
 }
 
 p {
   color: #127475;
 }
 
-
 /* ibm-plex-sans-regular - latin */
 @font-face {
-  font-family: 'IBM Plex Sans';
+  font-family: "IBM Plex Sans";
   font-style: normal;
   font-weight: 400;
-  src: url('../../public/fonts/ibm-plex-sans-v14-latin-regular.eot'); /* IE9 Compat Modes */
-  src: local(''),
-  url('../../public/fonts/ibm-plex-sans-v14-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('../../public/fonts/ibm-plex-sans-v14-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
-  url('../../public/fonts/ibm-plex-sans-v14-latin-regular.woff') format('woff'), /* Modern Browsers */
-  url('../../public/fonts/ibm-plex-sans-v14-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
-  url('../../public/fonts/ibm-plex-sans-v14-latin-regular.svg#IBMPlexSans') format('svg'); /* Legacy iOS */
+  src: url("../../public/fonts/ibm-plex-sans-v14-latin-regular.eot"); /* IE9 Compat Modes */
+  src: local(""),
+    url("../../public/fonts/ibm-plex-sans-v14-latin-regular.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */
+      url("../../public/fonts/ibm-plex-sans-v14-latin-regular.woff2")
+      format("woff2"),
+    /* Super Modern Browsers */
+      url("../../public/fonts/ibm-plex-sans-v14-latin-regular.woff")
+      format("woff"),
+    /* Modern Browsers */
+      url("../../public/fonts/ibm-plex-sans-v14-latin-regular.ttf")
+      format("truetype"),
+    /* Safari, Android, iOS */
+      url("../../public/fonts/ibm-plex-sans-v14-latin-regular.svg#IBMPlexSans")
+      format("svg"); /* Legacy iOS */
 }
 
 .grid {
@@ -53,7 +63,7 @@ p {
   grid-row-gap: var(--grid-spacing-vertical);
   display: grid;
   grid-template-columns: 1fr;
-  margin: 0;
+  //margin: 0;
 
   @if map-get($breakpoints, "lg") {
     @media (min-width: map-get($breakpoints, "lg")) {
