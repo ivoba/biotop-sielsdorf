@@ -4,11 +4,10 @@ import * as fs from "fs";
 import { readFileSync, writeFileSync } from "fs";
 import * as https from "https";
 import { pipeline } from "stream";
-import { Specie } from "./types";
+import { Specie, Species } from "./types";
 
-async function loadData(jsonFile: string, csvFile: string): Promise<Object> {
+async function loadData(jsonFile: string, csvFile: string): Promise<Species> {
   let reload = false;
-  let sorted = {};
   if (fs.existsSync(jsonFile)) {
     let dateJson = fs.statSync(jsonFile);
     let dateCsv = fs.statSync(csvFile);
@@ -22,12 +21,12 @@ async function loadData(jsonFile: string, csvFile: string): Promise<Object> {
   }
 
   if (reload) {
-    sorted = await loadCsv(csvFile);
-    writeFileSync(jsonFile, JSON.stringify(sorted));
+    let species = await loadCsv(csvFile);
+    writeFileSync(jsonFile, JSON.stringify(species));
+    return species;
   } else {
-    sorted = JSON.parse(readFileSync(jsonFile).toString());
+    return JSON.parse(readFileSync(jsonFile).toString());
   }
-  return sorted;
 }
 
 const fetchImg = async (bildUrl: string) => {
@@ -46,11 +45,12 @@ const fetchImg = async (bildUrl: string) => {
   }
 };
 
-async function loadCsv(file: string): Promise<Object> {
+async function loadCsv(file: string): Promise<Species> {
   const input = readFileSync(file);
   let rawRecords = parse(input, {
     delimiter: ";",
   });
+  let speciesCount:number = 0;
   // delete first header row
   rawRecords.shift();
 
@@ -72,6 +72,7 @@ async function loadCsv(file: string): Promise<Object> {
     // prefer one with img
     if (reduced[x["artengruppe"]][speciesName] === undefined || x.link !== "") {
       reduced[x["artengruppe"]][speciesName] = x;
+      speciesCount++;
     }
     // todo count oberservations, take last observed, maybe by reducing again with count
 
@@ -97,7 +98,7 @@ async function loadCsv(file: string): Promise<Object> {
     sorted[key] = await sortObj(sorted[key]);
   }
 
-  return sorted;
+  return {count: speciesCount, species: sorted};
 }
 
 async function download(source: string, destination: string): Promise<void> {
