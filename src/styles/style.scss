@@ -27,6 +27,20 @@ a:hover{
   color: #8A2C2C;
 }
 
+.hanchor {
+  font-size: 100%;
+  visibility: hidden;
+  svg {
+      margin-left: 10px;
+    }
+}
+
+h1:hover a,
+h2:hover a,
+h3:hover a,
+h4:hover a {
+  visibility: visible
+}
 
 article {
   background-color: #eae1df;
@@ -46,8 +60,6 @@ p {
 
 a {
   color: #8A2C2C;
-  padding-left: 0.5rem;
-  padding-bottom: 0.5rem;
 }
 
 /* ibm-plex-sans-regular - latin */

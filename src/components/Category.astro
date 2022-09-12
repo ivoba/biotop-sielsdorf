@@ -25,9 +25,9 @@ const species = chunkArray(Object.values(category), 2);
               src={
                 specie.image ? `/assets/arten/${specie.image}` : `/social.png`
               }
-              widths={[200, 400, 800]}
+              widths={[200, 400, 500]}
               aspectRatio={4 / 3}
-              sizes="(max-width: 800px) 100vw, 800px"
+              sizes="(max-width: 500px) 100vw, 500px"
               formats={["avif", "jpeg", "png", "webp"]}
               alt={specie.trivial}
             />
@@ -40,7 +40,7 @@ const species = chunkArray(Object.values(category), 2);
 
 <style>
   time {
-    margin: 1.rem;
+    margin: 1rem;
     color: var(--theme-text-lighter);
   }
 
@@ -49,6 +49,6 @@ const species = chunkArray(Object.values(category), 2);
     font-weight: 700;
     color: var(--theme-text);
     --typography-spacing-vertical: 0.5rem;
-    margin: 1.rem;
+    margin: 1rem;
   }
 </style>
