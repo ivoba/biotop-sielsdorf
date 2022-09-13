@@ -28,6 +28,7 @@ const species = await loadData(jsonFile, csvFile);
                     Kartiert in <a href="https://naturgucker.de" target="_blank">Naturgucker.de</a> Gebiet <a href="https://naturgucker.de/?gebiet=-912713277" target="_blank">Biotop Hürth Sielsdorf</a>
                 </p>
             </section>
+            <hr>
             <section aria-label="species list">
                 {Object.keys(species.species).map(category => (
                     <h2>{category} ({Object.keys(species.species[category]).length})

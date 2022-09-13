@@ -1,7 +1,7 @@
 ---
 import { chunkArray } from "../helper";
 import { Picture } from "@astrojs/image/components";
-import { Specie } from "../types";
+import "../types";
 
 export interface Props {
   title: string;
@@ -9,8 +9,6 @@ export interface Props {
 }
 
 const { title, category } = Astro.props as Props;
-
-//const species = Object.keys(category).reduce(function (r, k) { return r.concat(category[k]);}, []);
 const species = chunkArray(Object.values(category), 2);
 ---
 
