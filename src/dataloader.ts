@@ -30,7 +30,6 @@ async function loadData(jsonFile: string, csvFile: string): Promise<Species> {
 }
 
 const fetchImg = async (bildUrl: string) => {
-  // todo download img, cache results
   // only update if json is gone or csv is newer, use filetime
   const url = new URL(bildUrl);
   let bildId = url.searchParams.get("bild");
@@ -50,18 +49,21 @@ async function loadCsv(file: string): Promise<Species> {
   let rawRecords = parse(input, {
     delimiter: ";",
   });
-  let speciesCount:number = 0;
+  let speciesCount: number = 0;
   // delete first header row
   rawRecords.shift();
 
-  const refinedRecords = transform(rawRecords, (data): Specie => ({
-    date: data[7],
-    artengruppe: data[15],
-    trivial: data[20],
-    art: data[18],
-    name: data[19],
-    link: data[33],
-  }));
+  const refinedRecords = transform(
+    rawRecords,
+    (data): Specie => ({
+      date: data[7],
+      artengruppe: data[15],
+      trivial: data[20],
+      art: data[18],
+      name: data[19],
+      link: data[33],
+    })
+  );
 
   // sort by Artengruppe
   const grouped = refinedRecords.reduce((reduced, x) => {
@@ -98,7 +100,7 @@ async function loadCsv(file: string): Promise<Species> {
     sorted[key] = await sortObj(sorted[key]);
   }
 
-  return {count: speciesCount, species: sorted};
+  return { count: speciesCount, species: sorted };
 }
 
 async function download(source: string, destination: string): Promise<void> {
