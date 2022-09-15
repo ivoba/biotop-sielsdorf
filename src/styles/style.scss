@@ -24,7 +24,7 @@ body {
 }
 
 a:hover{
-  color: #8A2C2C;
+  color: #033542;
 }
 
 .hanchor {
@@ -43,7 +43,7 @@ h4:hover a {
 }
 
 article {
-  background-color: #eae1df;
+  background-color: #f5f1f0;
   margin-bottom: 0.5rem;
   --block-spacing-vertical: calc(var(--spacing) * 1);
   
@@ -58,8 +58,33 @@ p {
   padding-left: 0.5rem;
 }
 
+.description {
+  color: #127475;
+  padding-left: none;
+}
+
 a {
-  color: #8A2C2C;
+  color: #033542;
+  padding-left: 0.5rem;
+}
+
+ b, strong {
+  padding-left: 0.5rem;
+}
+
+.article {
+  padding-left: 0.5rem;
+  padding-right: 0,5rem;
+}
+
+article > header {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+article > footer {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 /* ibm-plex-sans-regular - latin */
@@ -105,6 +130,7 @@ a {
 }
 
 h1 {
+  color: #033542;
   --font-size: 2rem;
   --typography-spacing-vertical: 0.5rem;
 
