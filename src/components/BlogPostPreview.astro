@@ -15,10 +15,13 @@ const { title, description, publishDate, url } = Astro.props as Props;
     <a href={url}><h2>{title}</h2></a>
   </header>
   <p>{description}</p>
-  <a href={url}>mehr</a>
+  <a href={url} class="more">mehr</a>
 </article>
 
 <style>
+  a.more {
+    padding-left: 0.5rem;
+  }
   time {
     margin: 0;
     color: var(--theme-text-lighter);

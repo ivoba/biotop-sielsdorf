@@ -25,7 +25,7 @@ const artengruppe = Object.keys(species.species).reduce((arten, key) => {
 
 	<body>
 		<Header />
-        <main>
+        <main class="container">
             <section>
                 <h1>{title} ({species.count})</h1>
                 <p class="description">
@@ -35,14 +35,15 @@ const artengruppe = Object.keys(species.species).reduce((arten, key) => {
             </section>
             <hr>
             <article class="arten">
-                <nav>
-                    <ul>
+                <div class="table">
+                    <ul class="arten">
                         {artengruppe.map(art => (
                             <li><a href=`#${art.name}`>{art.name} ({art.count})</a></li>
                         ))}
                     </ul>
-                </nav>
+                </div>
             </article>
+            <br>
             <section aria-label="species list">
                 {Object.keys(species.species).map(category => (
                     <h2 id={category}>{category} ({Object.keys(species.species[category]).length})
@@ -59,7 +60,17 @@ const artengruppe = Object.keys(species.species).reduce((arten, key) => {
 </html>
 
 <style>
+    .table {
+        display: table;
+        margin: 0 auto;
+    }
 .arten a{
     font-size: 0.7rem;
+}
+ul.arten {
+    margin-bottom: 0;
+}
+ul.arten > li {
+    display: inline;
 }
 </style>

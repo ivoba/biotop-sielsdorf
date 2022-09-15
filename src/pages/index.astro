@@ -29,10 +29,10 @@ const posts = chunkArray(sortedPosts, 2);
     <main>
       <section>
         <h1>{title}</h1>
-        <p>
-          {description} Betreut vom <a href="https://bund-rhein-erft.de/huerth"
-            >BUND Hürth</a
-          >
+        <p class="desc">
+          {description}
+          <br />
+          Betreut vom <a href="https://bund-rhein-erft.de/huerth">BUND Hürth</a>
         </p>
       </section>
       <section aria-label="Blog post list">
@@ -55,7 +55,9 @@ const posts = chunkArray(sortedPosts, 2);
     <Footer />
 
     <style>
-
+      p.desc {
+        padding-left: 0;
+      }
     </style>
   </body>
 </html>
