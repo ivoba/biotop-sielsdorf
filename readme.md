@@ -10,7 +10,8 @@ Built with [Astro](https://astro.build).
 # todo
 
 - prettier for astro files
-- learn typescript
+- paging von posts
+  https://docs.astro.build/en/core-concepts/routing/#pagination
 - collaboration with online editor like stackblitz
 - social.png
 - https://www.npmjs.com/package/astro-compress
