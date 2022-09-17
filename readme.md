@@ -2,12 +2,13 @@
 
 Built with [Astro](https://astro.build).
 
-## Resources
+## todo content
 
-- https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics?file=src%2Fpages%2Findex.astro&on=stackblitz
-- https://google-webfonts-helper.herokuapp.com/fonts/ibm-plex-sans?subsets=latin
+- Biotoptypen
+- warum sind die Arten da?
+- Synökoligien
 
-# todo
+## todo tech
 
 - prettier for astro files
 - paging von posts
@@ -17,3 +18,8 @@ Built with [Astro](https://astro.build).
 - https://www.npmjs.com/package/astro-compress
 - dark mode toggle
 - public/assets/arten/Barypeithes-indet-.jpg image is not correctly downloaded
+
+## Resources
+
+- https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics?file=src%2Fpages%2Findex.astro&on=stackblitz
+- https://google-webfonts-helper.herokuapp.com/fonts/ibm-plex-sans?subsets=latin
