@@ -35,9 +35,11 @@ const fetchImg = async (bildUrl: string) => {
   let bildId = url.searchParams.get("bild");
   bildId = `NGID${bildId.replace("-", "n")}`;
   const res = await fetch(
-    `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${import.meta.env.SECRET_PASSWORD}&tags=${bildId}&format=json&nojsoncallback=1`
+    `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${import.meta.env.FLICKR_API_KEY}&tags=${bildId}&format=json&nojsoncallback=1`
   );
   const json = await res.json();
+  console.log(json);
+  
   if (json.photos && json.photos.photo.length > 0) {
     const img = json.photos.photo[0];
     return `https://live.staticflickr.com/${img.server}/${img.id}_${img.secret}_b.jpg`;
@@ -90,8 +92,9 @@ async function loadCsv(file: string): Promise<Species> {
         let name = sorted[key][art].name.replace(/\.|[\/]/g, "-");
         const imgName = `${sorted[key][art].art}-${name}.jpg`;
         const localImg = `./public/assets/arten/${imgName}`;
-        if (fs.existsSync(localImg) === false) {
+        if (fs.existsSync(localImg) === false && img !== undefined) {
           await download(img, localImg);
+          console.log(`downloaded: ${img}`);
         }
         sorted[key][art].image = imgName;
         sorted[key][art].flickr_image = img;

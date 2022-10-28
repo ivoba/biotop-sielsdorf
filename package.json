@@ -1,5 +1,5 @@
 {
-  "name": "@example/blog",
+  "name": "@ivoba/sielsdorf",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -15,11 +15,12 @@
     "@types/node": "^18.7.15",
     "astro": "^1.2.5",
     "prettier": "^2.7.1",
-    "prettier-plugin-astro": "^0.5.4",
+    "prettier-plugin-astro": "^0.6.0",
     "sass": "^1.54.4"
   },
   "dependencies": {
-    "@astrojs/image": "^0.7.0",
-    "csv": "^6.2.0"
+    "@astrojs/image": "^0.11.0",
+    "csv": "^6.2.0",
+    "sharp": "^0.31.1"
   }
 }
