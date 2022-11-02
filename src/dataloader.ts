@@ -6,7 +6,7 @@ import * as https from "https";
 import { pipeline } from "stream";
 import { Specie, Species } from "./types";
 
-async function loadData(jsonFile: string, csvFile: string): Promise<Species> {
+async function loadData(jsonFile: string, csvFile: string): Promise<{ species: {}; count: number }> {
   let reload = false;
   if (fs.existsSync(jsonFile)) {
     let dateJson = fs.statSync(jsonFile);
@@ -38,15 +38,14 @@ const fetchImg = async (bildUrl: string) => {
     `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${import.meta.env.FLICKR_API_KEY}&tags=${bildId}&format=json&nojsoncallback=1`
   );
   const json = await res.json();
-  console.log(json);
-  
+
   if (json.photos && json.photos.photo.length > 0) {
     const img = json.photos.photo[0];
     return `https://live.staticflickr.com/${img.server}/${img.id}_${img.secret}_b.jpg`;
   }
 };
 
-async function loadCsv(file: string): Promise<Species> {
+async function loadCsv(file: string): Promise<{ species: {}; count: number }> {
   const input = readFileSync(file);
   let rawRecords = parse(input, {
     delimiter: ";",
@@ -94,7 +93,6 @@ async function loadCsv(file: string): Promise<Species> {
         const localImg = `./public/assets/arten/${imgName}`;
         if (fs.existsSync(localImg) === false && img !== undefined) {
           await download(img, localImg);
-          console.log(`downloaded: ${img}`);
         }
         sorted[key][art].image = imgName;
         sorted[key][art].flickr_image = img;

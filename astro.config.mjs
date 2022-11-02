@@ -11,7 +11,7 @@ export default defineConfig({
   vite: {
     server: {
       watch: {
-        ignored: [".idea/**"],
+        ignored: ["**/.idea/**"],
       },
     },
   },

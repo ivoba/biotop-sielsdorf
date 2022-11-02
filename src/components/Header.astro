@@ -1,3 +1,8 @@
+---
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.slice(1); // remove the first "/"
+---
+
 <header>
   <nav>
     <ul>
@@ -170,8 +175,16 @@
       </li>
     </ul>
     <ul>
-      <li><a href="/audiomoth">AudioMoth</a></li>
-      <li><a href="/arten">Arten</a></li>
+      <li>
+        <a href="/audiomoth" class={currentPath === "audiomoth" ? "active" : ""}
+          >AudioMoth</a
+        >
+      </li>
+      <li>
+        <a href="/arten" class={currentPath === "arten" ? "active" : ""}
+          >Arten</a
+        >
+      </li>
     </ul>
   </nav>
 </header>
@@ -189,5 +202,9 @@
     body > header {
       --block-spacing-vertical: calc(var(--spacing) * 0.5);
     }
+  }
+  .active {
+    --color: var(--primary);
+    --background-color: var(--primary-focus);
   }
 </style>
