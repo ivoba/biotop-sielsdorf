@@ -2,8 +2,11 @@
 
 Built with [Astro](https://astro.build).
 
-## todo content
+## Naturgucker Export for Arten page
+Remove the last semicolon for error: Invalid Record Length: expect 36, got 35
 
+## todo content
+- Karte
 - Biotoptypen
 - warum sind die Arten da?
 - Synökoligien
@@ -14,7 +17,6 @@ Built with [Astro](https://astro.build).
 - paging von posts
   https://docs.astro.build/en/core-concepts/routing/#pagination
 - collaboration with online editor like stackblitz
-- social.png
 - https://www.npmjs.com/package/astro-compress
 - dark mode toggle
 - public/assets/arten/Barypeithes-indet-.jpg image is not correctly downloaded
