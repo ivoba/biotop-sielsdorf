@@ -35,7 +35,7 @@ const fetchImg = async (bildUrl: string) => {
   let bildId = url.searchParams.get("bild");
   bildId = `NGID${bildId.replace("-", "n")}`;
   const res = await fetch(
-    `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${import.meta.env.FLICKR_API_KEY}&tags=${bildId}&format=json&nojsoncallback=1`
+    `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${import.meta.env.SECRET_FLICKR_API_KEY}&tags=${bildId}&format=json&nojsoncallback=1`
   );
   const json = await res.json();
 
