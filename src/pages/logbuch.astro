@@ -4,10 +4,9 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import BlogPostPreview from "../components/BlogPostPreview.astro";
 import { chunkArray, dateParser } from "../helper";
-import { Picture } from "@astrojs/image/components";
 
-let title = "Biotop Sielsdorf";
-let description = "Projektseite des Biotop Hürth Sielsdorf.";
+let title = "Biotop Sielsdorf Logbuch";
+let description = "Logbuch des Biotop Hürth Sielsdorf.";
 
 // Use Astro.glob to fetch all post with associated frontmatter
 const unsortedPosts = await Astro.glob("./posts/*.mdx");
@@ -17,7 +16,7 @@ const sortedPosts = unsortedPosts.sort(function (a, b) {
     new Date(dateParser(a.frontmatter.publishDate)).valueOf()
   );
 });
-const posts = chunkArray(sortedPosts, 2).slice(0, 1);
+const posts = chunkArray(sortedPosts, 2);
 ---
 
 <html lang="de">
@@ -32,21 +31,9 @@ const posts = chunkArray(sortedPosts, 2).slice(0, 1);
         <h1>{title}</h1>
         <p class="desc">
           {description}
-          <br />
-          Betreut vom <a href="https://bund-rhein-erft.de/huerth">BUND Hürth</a>
         </p>
-        <Picture
-          src="/assets/biotop-sielsdorf-qgis.png"
-          widths={[200, 400, 800]}
-          aspectRatio={4 / 3}
-          sizes="(max-width: 800px) 100vw, 800px"
-          formats={["avif", "jpeg", "png", "webp"]}
-          alt="Biotop Sielsdorf QGIS"
-        />
       </section>
       <section aria-label="Blog post list">
-        <h3>Logbuch:</h3>
-        <!-- todo make component -->
         {
           posts.map((chunk, index) => (
             <div class="grid">
@@ -56,15 +43,12 @@ const posts = chunkArray(sortedPosts, 2).slice(0, 1);
                   description={frontmatter.description}
                   publishDate={frontmatter.publishDate}
                   url={url}
-                  image={frontmatter.heroImage.src}
+                  image={frontmatter.heroImage ? frontmatter.heroImage.src: null}
                 />
               ))}
             </div>
           ))
         }
-        <p>
-          <small>Mehr im <a href="/logbuch">Logbuch</a></small>
-        </p>
       </section>
     </main>
     <Footer />

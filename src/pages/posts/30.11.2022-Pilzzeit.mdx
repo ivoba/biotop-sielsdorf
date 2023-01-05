@@ -1,0 +1,35 @@
+---
+layout: "../../layouts/BlogPost.astro"
+title: "Pilzzeit"
+description: "Herbstzeit ist Pilzzeit."
+publishDate: "30.11.2022"
+observations:
+  - title: "Judasohr (Auricularia auricula-judae)"
+    img: "/assets/arten/Auricularia-auricula-judae.jpg"
+    body: "Auch Holunderschwamm genannt und genau auch an toten Holunder gefunden."
+  - title: "Gesäter Tintling (Coprinellus disseminatus)"
+    img: "/assets/arten/Coprinellus-disseminatus.jpg"
+    body: "Ein Holzzersetzer von Laubbäumen."
+  - title: "Südlicher Ackerling (Cyclocybe cylindracea)"
+    img: "/assets/arten/Cyclocybe-cylindracea.jpg"
+    body: "An Pappel, guter Speisepilz (aber besser nochmal abchecken ;))"
+  - title: "Sparriger Schüppling (Pholiota squarrosa)"
+    img: "/assets/arten/Pholiota-squarrosa.jpg"
+    body: "An Pappel, dieses Jahr auch wieder prächtig."
+heroImage:
+  src: "/assets/blog/randstreifen-mahd.jpg"
+  alt: "Herbst Beginn"
+---
+
+import Cards from "../../components/Cards.astro";
+
+Wir haben die letzten Wochen die Komposte und Benjes-Hecken gefüttert mit Laub und Schnittgut.  
+Anzuchten vorbereitet und an der Beobachtungsplattform im Bach weitergemacht.
+
+Der Bach führte am Wochenende Wasser, der Teich war gefüllt.  
+Die Wochen davor war der Bach allerdings trocken.  
+Der Randstreifen am Bach ist gemäht worden.  
+
+Herbst ist Pilzzeit!
+
+<Cards observations={frontmatter.observations} />

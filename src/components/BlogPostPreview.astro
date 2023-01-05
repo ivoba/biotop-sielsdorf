@@ -1,12 +1,15 @@
 ---
+import { Picture } from "@astrojs/image/components";
+
 export interface Props {
   title: string;
   description: string;
   publishDate: string;
   url: string;
+  image?: string
 }
 
-const { title, description, publishDate, url } = Astro.props as Props;
+const { title, description, publishDate, url, image } = Astro.props as Props;
 ---
 
 <article>
@@ -14,11 +17,27 @@ const { title, description, publishDate, url } = Astro.props as Props;
     <time>{publishDate}</time>
     <a href={url}><h2>{title}</h2></a>
   </header>
+  {image && (
+  <a href={url} class="more"><Picture
+    src={image}
+    widths={[200, 440]}
+    aspectRatio={4 / 3}
+    sizes="(max-width: 440px) 200w (min-width: 440px) 440w"
+    formats={["avif", "jpeg", "png", "webp"]}
+    alt={title}
+  /></a>)
+  }
   <p>{description}</p>
   <a href={url} class="more">mehr</a>
 </article>
 
 <style>
+  img {
+    margin-bottom: 1rem;
+  }
+  article {
+    text-align: center;
+  }
   a.more {
     padding-left: 0.5rem;
   }

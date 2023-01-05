@@ -185,6 +185,11 @@ const currentPath = pathname.slice(1); // remove the first "/"
           >Arten</a
         >
       </li>
+      <li>
+        <a href="/logbuch" class={currentPath === "logbuch" ? "active" : ""}
+          >Logbuch</a
+        >
+      </li>
     </ul>
   </nav>
 </header>
@@ -203,7 +208,8 @@ const currentPath = pathname.slice(1); // remove the first "/"
       --block-spacing-vertical: calc(var(--spacing) * 0.5);
     }
   }
-  a:hover,.active {
+  a:hover,
+  .active {
     --color: var(--primary);
     --background-color: var(--primary-focus);
   }
