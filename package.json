@@ -10,16 +10,16 @@
     "astro": "astro"
   },
   "devDependencies": {
-    "@astrojs/mdx": "^0.14.0",
+    "@astrojs/mdx": "^0.19.0",
     "@picocss/pico": "^1.5.3",
     "@types/node": "^18.7.15",
-    "astro": "^1.2.5",
+    "astro": "^2.4.4",
     "prettier": "^2.7.1",
-    "prettier-plugin-astro": "^0.7.0",
+    "prettier-plugin-astro": "^0.8.0",
     "sass": "^1.54.4"
   },
   "dependencies": {
-    "@astrojs/image": "^0.12.1",
+    "@astrojs/image": "^0.16.1",
     "csv": "^6.2.0",
     "sharp": "^0.31.1"
   }
