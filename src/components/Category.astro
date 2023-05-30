@@ -9,23 +9,24 @@ export interface Props {
 }
 
 const { title, category } = Astro.props as Props;
-const species = chunkArray(Object.values(category), 2);
+const species = chunkArray(Object.values(category), 4);
 ---
 
-<article>
+<div>
   {
     species.map((chunk) => (
       <div class="grid">
         {chunk.map((specie: Specie) => (
           <article>
-            {specie.trivial} ({specie.art} {specie.name}) <br />
+            <h6>{specie.trivial}</h6>
+            <div class="latin">{specie.art} {specie.name}</div>
             <Picture
               src={
                 specie.image ? `/assets/arten/${specie.image}` : `/social.png`
               }
-              widths={[200, 400, 500]}
+              widths={[228]}
               aspectRatio={4 / 3}
-              sizes="(max-width: 500px) 100vw, 500px"
+              sizes="(max-width: 228px) 100vw, 228px"
               formats={["avif", "jpeg", "png", "webp"]}
               alt={specie.trivial}
             />
@@ -34,9 +35,13 @@ const species = chunkArray(Object.values(category), 2);
       </div>
     ))
   }
-</article>
+</div>
 
 <style>
+  article {
+    line-height: 1rem;
+    max-width: 268px;
+  }
   time {
     margin: 1rem;
     color: var(--theme-text-lighter);
@@ -49,4 +54,17 @@ const species = chunkArray(Object.values(category), 2);
     --typography-spacing-vertical: 0.5rem;
     margin: 1rem;
   }
+  h6 {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+  }
+  .latin {
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+  }
+  /* @media print {
+    article {
+        width: 50%;
+    }
+} */
 </style>
