@@ -6,7 +6,7 @@ import mdx from "@astrojs/mdx";
 // https://astro.build/config
 export default defineConfig({
   integrations: [image(), mdx()],
-  site: `https://ivoba.github.io`,
+  site: `https://sielsdorf.bund-huerth.de`,
   base: `/`,
   vite: {
     server: {
