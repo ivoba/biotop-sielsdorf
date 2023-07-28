@@ -14,7 +14,6 @@ Remove the last semicolon for error: Invalid Record Length: expect 36, got 35
 ## todo tech
 
 - prettier for astro files
-- OG Images
 - paging von posts
   https://docs.astro.build/en/core-concepts/routing/#pagination
 - collaboration with online editor like stackblitz
