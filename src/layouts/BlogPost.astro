@@ -35,9 +35,9 @@ const {
             heroImage && (
               <Picture
                 src={heroImage.src}
-                widths={[200, 400, 800]}
+                widths={[200, 400, 640]}
                 aspectRatio={4 / 3}
-                sizes="(max-width: 800px) 100vw, 800px"
+                sizes="(max-width: 640px) 100vw, 640px"
                 formats={["avif", "jpeg", "png", "webp"]}
                 alt={heroImage.alt}
               />
@@ -54,8 +54,8 @@ const {
     <Footer />
     <style>
       img {
-        width: 100vw;
-        object-fit: cover;
+        /* width: 100vw;
+        object-fit: cover; */
         object-position: center;
         margin-top: 2rem;
         margin-bottom: 4rem;
