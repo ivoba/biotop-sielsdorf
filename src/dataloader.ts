@@ -19,7 +19,7 @@ async function loadData(jsonFile: string, csvFile: string): Promise<{ species: {
   } else {
     reload = true;
   }
-
+  reload=true;
   if (reload) {
     let species = await loadCsv(csvFile);
     writeFileSync(jsonFile, JSON.stringify(species));
@@ -29,8 +29,7 @@ async function loadData(jsonFile: string, csvFile: string): Promise<{ species: {
   }
 }
 
-const fetchImg = async (bildUrl: string) => {
-  // only update if json is gone or csv is newer, use filetime
+const fetchImg = async (bildUrl: string): Promise<string|undefined> => {
   const url = new URL(bildUrl);
   let bildId = url.searchParams.get("bild");
   bildId = `NGID${bildId.replace("-", "n")}`;

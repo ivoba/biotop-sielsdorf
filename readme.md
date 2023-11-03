@@ -3,13 +3,16 @@
 Built with [Astro](https://astro.build).
 
 ## Naturgucker Export for Arten page
-Remove the last semicolon for error: Invalid Record Length: expect 36, got 35
 
 ## todo content
+- Remove the last semicolon for error: Invalid Record Length: expect 36, got 37
 - Karte
 - Biotoptypen
 - warum sind die Arten da?
 - Synökoligien
+- dark mode
+- css print
+- make pretty Kaefer, InsektenSonstige
 
 ## todo tech
 
