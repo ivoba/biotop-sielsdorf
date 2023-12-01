@@ -4,6 +4,14 @@ Built with [Astro](https://astro.build).
 
 ## Naturgucker Export for Arten page
 
+## todo V3
+- rename audomoth to vogelstimmen, make redirect
+- move blog posts to content
+- move blog images to src
+- seperate arten json creation and astro pages, run before rendering
+- astro only relies on manifest.json
+- print css
+
 ## todo content
 - Remove the last semicolon for error: Invalid Record Length: expect 36, got 37
 - Karte
@@ -15,12 +23,10 @@ Built with [Astro](https://astro.build).
 - make pretty Kaefer, InsektenSonstige
 
 ## todo tech
-
+- rss
 - prettier for astro files
 - paging von posts
-  https://docs.astro.build/en/core-concepts/routing/#pagination
 - collaboration with online editor like stackblitz
-- https://www.npmjs.com/package/astro-compress
 - dark mode toggle
 - public/assets/arten/Barypeithes-indet-.jpg image is not correctly downloaded
 

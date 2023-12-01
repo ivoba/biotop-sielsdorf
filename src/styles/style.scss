@@ -1,30 +1,12 @@
-// Import full Pico source code todo include only the necessary parts
-// Enable .grid class
-@import "../node_modules/@picocss/pico/scss/pico.classless";
+// todo use direct imports and omit parts you dont need
+@import "../node_modules/@picocss/pico/scss/pico";
 
-body {
-  margin: 0.5rem;
-}
-
+body>header,
+body>main,
+body>footer,
+section
 :root {
-  --font-fallback: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
-    sans-serif, Apple Color Emoji, Segoe UI Emoji;
-  --font-family: "IBM Plex Sans", var(--font-fallback);
-  --spacing: 0.5rem;
-  --theme-text: #127475;
-  --grid-spacing-horizontal: 1rem;
-  --grid-spacing-vertical: 1rem;
-  --block-spacing-horizontal: calc (var(--spacing) * 0.5);
-}
-[data-theme="light"],
-:root:not([data-theme="dark"]) {
-  --primary: #127475;
-  background-color: white;
-  
-}
-
-a:hover{
-  color: #033542;
+    --pico-block-spacing-vertical: 0;
 }
 
 .hanchor {
@@ -42,11 +24,8 @@ h4:hover a {
   visibility: visible
 }
 
-article {
-  background-color: #f5f1f0;
-  margin-bottom: 0.5rem;
-  --block-spacing-vertical: calc(var(--spacing) * 1);
-  
+article > header {
+  --pico-block-spacing-vertical: 0.2rem;
 }
 
 time {
@@ -54,17 +33,11 @@ time {
 }
 
 p {
-  color: #127475;
   padding-left: 0.5rem;
 }
 
 .description {
-  color: #127475;
   padding-left: none;
-}
-
-a {
-  color: #033542;
 }
 
  b, strong {
@@ -109,30 +82,9 @@ article > footer {
       format("svg"); /* Legacy iOS */
 }
 
-.grid {
-  grid-column-gap: var(--grid-spacing-horizontal);
-  grid-row-gap: var(--grid-spacing-vertical);
-  display: grid;
-  grid-template-columns: 1fr;
-  //margin: 0;
-
-  @if map-get($breakpoints, "lg") {
-    @media (min-width: map-get($breakpoints, "lg")) {
-      grid-template-columns: repeat(auto-fit, minmax(0%, 1fr));
-      
-    }
-  }
-
-  & > * {
-    min-width: 0; // HACK for childs in overflow
-  }
-}
-
 h1 {
-  color: #033542;
   --font-size: 2rem;
   --typography-spacing-vertical: 0.5rem;
-
 }
 
  h2 {

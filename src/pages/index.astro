@@ -4,19 +4,17 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import BlogPostPreview from "../components/BlogPostPreview.astro";
 import { chunkArray, dateParser } from "../helper";
-import { Picture } from "@astrojs/image/components";
+import { Picture } from "astro:assets";
+import sielsdorfQGISImg from "../assets/biotop-sielsdorf-qgis.png";
+import { type CollectionEntry, getCollection } from "astro:content";
 
 let title = "Biotop Sielsdorf";
 let description = "Projektseite des Biotop Hürth Sielsdorf.";
 
-// Use Astro.glob to fetch all post with associated frontmatter
-const unsortedPosts = await Astro.glob("./logbuch/*.mdx");
-const sortedPosts = unsortedPosts.sort(function (a, b) {
-  return (
-    new Date(dateParser(b.frontmatter.publishDate)).valueOf() -
-    new Date(dateParser(a.frontmatter.publishDate)).valueOf()
-  );
-});
+const sortedPosts = (await getCollection("blog")).sort(
+    (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+);
+  
 const posts = chunkArray(sortedPosts, 2).slice(0, 1);
 ---
 
@@ -25,7 +23,7 @@ const posts = chunkArray(sortedPosts, 2).slice(0, 1);
     <BaseHead title={title} description={description} />
   </head>
 
-  <body>
+  <body class="container">
     <Header />
     <main>
       <section>
@@ -33,31 +31,23 @@ const posts = chunkArray(sortedPosts, 2).slice(0, 1);
         <p class="desc">
           {description}
           <br />
-          Betreut vom <a href="https://bund-rhein-erft.de/huerth">BUND Hürth</a>
+           Betreut vom <a href="https://bund-rhein-erft.de/huerth">BUND Hürth</a
+          >
         </p>
         <Picture
-          src="/assets/biotop-sielsdorf-qgis.png"
+          src={sielsdorfQGISImg}
           widths={[200, 400, 800]}
-          aspectRatio={4 / 3}
-          sizes="(max-width: 800px) 100vw, 800px"
           formats={["avif", "jpeg", "png", "webp"]}
           alt="Biotop Sielsdorf QGIS"
         />
       </section>
       <section aria-label="Blog post list">
         <h3>Logbuch:</h3>
-        <!-- todo make component -->
         {
           posts.map((chunk, index) => (
-            <div class="grid">
-              {chunk.map(({ url, frontmatter }) => (
-                <BlogPostPreview
-                  title={frontmatter.title}
-                  description={frontmatter.description}
-                  publishDate={frontmatter.publishDate}
-                  url={url}
-                  image={frontmatter.heroImage.src}
-                />
+             <div class="grid">
+              {chunk.map((post) =>  (
+                <BlogPostPreview post={post}/>
               ))}
             </div>
           ))

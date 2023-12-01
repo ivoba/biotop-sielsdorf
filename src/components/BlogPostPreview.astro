@@ -1,34 +1,42 @@
 ---
-import { Picture } from "@astrojs/image/components";
+import { Picture } from "astro:assets";
+import { CollectionEntry } from "astro:content";
+import { getUrl } from "../content/config";
 
 export interface Props {
-  title: string;
+  post: CollectionEntry<"blog">;
+  /*   title: string;
   description: string;
-  publishDate: string;
+  publishDate: Date;
   url: string;
-  image?: string
+  image?: ImageMetadata; */
 }
 
-const { title, description, publishDate, url, image } = Astro.props as Props;
+const { post } = Astro.props as Props;
+const url = getUrl('blog', post.slug);
 ---
 
 <article>
   <header>
-    <time>{publishDate}</time>
-    <a href={url}><h2>{title}</h2></a>
+    <time>{post.data.publishDate.toLocaleDateString("de-DE")}</time>
+    <a href={url}><h2>{post.data.title}</h2></a>
   </header>
-  {image && (
-  <a href={url} class="more"><Picture
-    src={image}
-    widths={[200, 440]}
-    aspectRatio={4 / 3}
-    sizes="(max-width: 440px) 200w (min-width: 440px) 440w"
-    formats={["avif", "jpeg", "png", "webp"]}
-    alt={title}
-  /></a>)
+  {
+    post.data.heroImage && (
+      <a href={url}>
+        <Picture
+          src={post.data.heroImage}
+          widths={[180, 440]}
+          loading="lazy"
+          sizes="(max-width: 440px) 200w (min-width: 440px) 440w"
+          formats={["avif", "jpeg", "png", "webp"]}
+          alt={post.data.title}
+        />
+      </a>
+    )
   }
-  <p>{description}</p>
-  <a href={url} class="more">mehr</a>
+  <p>{post.data.description}</p>
+  <a href={post.data.title} role="button">mehr</a>
 </article>
 
 <style>
@@ -37,19 +45,5 @@ const { title, description, publishDate, url, image } = Astro.props as Props;
   }
   article {
     text-align: center;
-  }
-  a.more {
-    padding-left: 0.5rem;
-  }
-  time {
-    margin: 0;
-    color: var(--theme-text-lighter);
-  }
-
-  h2 {
-    font-size: 2.25rem;
-    font-weight: 700;
-    color: var(--theme-text);
-    --typography-spacing-vertical: 0.5rem;
   }
 </style>
