@@ -4,18 +4,14 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import BlogPostPreview from "../components/BlogPostPreview.astro";
 import { chunkArray, dateParser } from "../helper";
+import { type CollectionEntry, getCollection } from "astro:content";
+import { getSortedBlogPosts } from "../content/config";
 
 let title = "Biotop Sielsdorf Logbuch";
 let description = "Logbuch des Biotop Hürth Sielsdorf.";
 
-// Use Astro.glob to fetch all post with associated frontmatter
-const unsortedPosts = await Astro.glob("./logbuch/*.mdx");
-const sortedPosts = unsortedPosts.sort(function (a, b) {
-  return (
-    new Date(dateParser(b.frontmatter.publishDate)).valueOf() -
-    new Date(dateParser(a.frontmatter.publishDate)).valueOf()
-  );
-});
+const sortedPosts = await getSortedBlogPosts();
+
 const posts = chunkArray(sortedPosts, 2);
 ---
 
@@ -35,16 +31,10 @@ const posts = chunkArray(sortedPosts, 2);
       </section>
       <section aria-label="Blog post list">
         {
-          posts.map((chunk, index) => (
+          posts.map((chunk) => (
             <div class="grid">
-              {chunk.map(({ url, frontmatter }) => (
-                <BlogPostPreview
-                  title={frontmatter.title}
-                  description={frontmatter.description}
-                  publishDate={frontmatter.publishDate}
-                  url={url}
-                  image={frontmatter.heroImage ? frontmatter.heroImage.src: null}
-                />
+              {chunk.map((post) => (
+                <BlogPostPreview post={post} />
               ))}
             </div>
           ))

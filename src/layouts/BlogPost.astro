@@ -1,29 +1,23 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
+import Cards from "../components/Cards.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { Picture } from 'astro:assets';
+import { CollectionEntry } from "astro:content";
 
 export interface Props {
-  content: {
-    title: string;
-    description: string;
-    publishDate: string;
-    heroImage?: {
-      src: string;
-      alt: string;
-    };
-  };
-}
+    post: CollectionEntry<"blog">;
+} 
 
-const {
-  content: { title, description, publishDate, heroImage },
-} = Astro.props as Props;
+
+
+const { post } = Astro.props as Props;
 ---
 
 <html lang="de">
   <head>
-    <BaseHead title={title} description={description} />
+    <BaseHead title={post.data.title} description={post.data.description} />
   </head>
 
   <body class="container">
@@ -32,30 +26,30 @@ const {
       <article>
         <header>
           {
-            heroImage && (
+            post.data.heroImage && (
               <Picture
-                src={heroImage}
+                src={post.data.heroImage}
                 widths={[200, 400, 640]}
-                aspectRatio={4 / 3}
                 sizes="(max-width: 640px) 100vw, 640px"
                 formats={["avif", "jpeg", "png", "webp"]}
-                alt={heroImage.alt}
+                alt={post.data.title}
               />
             )
           }
-          <h1 class="title">{title}</h1>
-          <time>{publishDate}</time>
+          <h1 class="title">{post.data.title}</h1>
+          <time>{post.data.publishDate.toLocaleDateString("de-DE")}</time>
         </header>
         <main>
           <slot />
+          <Cards observations={post.data.observations} />
         </main>
       </article>
     </main>
     <Footer />
     <style>
       img {
-        /* width: 100vw;
-        object-fit: cover; */
+        width: 50vw;
+        object-fit: cover;
         object-position: center;
         margin-top: 2rem;
         margin-bottom: 4rem;
@@ -64,19 +58,9 @@ const {
       @media (max-width: 50em) {
         img {
           height: 260px;
-          margin-top: 0;
-          margin-bottom: 2rem;
         }
-      }
-
-      .content {
-        margin-bottom: 8rem;
-      }
-
-      .content :global(h2) {
-        margin-top: 4rem;
-      }
-
+      }      
+     
       header {
         display: flex;
         flex-direction: column;
@@ -93,16 +77,7 @@ const {
       .title,
       time {
         margin: 0;
-      }
-
-      time {
-        color: var(--theme-text-lighter);
-      }
-
-      .title {
-        font-size: 2.25rem;
-        font-weight: 700;
-      }
+      }      
     </style>
   </body>
 </html>

@@ -1,30 +1,35 @@
 ---
-interface Observation {
-  title: string;
-  img: string;
-  body: string;
-}
+import { type CollectionEntry } from "astro:content";
+import { chunkArray } from "../helper";
+import { Picture } from 'astro:assets';
+import { Observation } from "../content/config";
+
 export interface Props {
   observations: Observation[];
 }
 
-import { chunkArray } from "../helper";
-const { observations } = Astro.props as Props;
+const { observations } = Astro.props;
 
 const chunkedObservations = observations ? chunkArray(observations, 2) : [];
 ---
 
 <hr />
-<strong>Neueste Beobachtungen:</strong>
+<h3>Neueste Beobachtungen:</h3>
 {
   chunkedObservations.map((observations, index) => (
     <div class="grid">
-      {observations.map(({ title, img, body }, index) => (
+      {observations.map(({ name, latin, img, body }, index) => (
         <div>
           <article>
-            <header>{title}</header>
+            <header><h5>{name}</h5>({latin})</header>
             <main>
-              <img src={img} alt={title} />
+              <Picture
+                src={img}
+                widths={[200, 400, 640]}
+                sizes="(max-width: 640px) 100vw, 640px"
+                formats={["avif", "jpeg", "png", "webp"]}
+                alt={name}
+              />
             </main>
             <footer>{body}</footer>
           </article>
@@ -33,4 +38,24 @@ const chunkedObservations = observations ? chunkArray(observations, 2) : [];
     </div>
   ))
 }
-<style></style>
+<style>
+  article {
+    padding: 0;
+    margin-bottom: 1rem;
+  }
+  header {
+    min-height: 3rem;
+    padding: 1rem;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  main {
+    margin-bottom: 0.2rem;
+    padding: 1rem;
+  }
+  footer {
+    padding: 1rem;
+    margin-left: 0;
+    margin-right: 0;
+  }
+</style>

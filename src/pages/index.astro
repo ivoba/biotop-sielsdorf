@@ -7,13 +7,12 @@ import { chunkArray, dateParser } from "../helper";
 import { Picture } from "astro:assets";
 import sielsdorfQGISImg from "../assets/biotop-sielsdorf-qgis.png";
 import { type CollectionEntry, getCollection } from "astro:content";
+import { getSortedBlogPosts } from "../content/config";
 
 let title = "Biotop Sielsdorf";
 let description = "Projektseite des Biotop Hürth Sielsdorf.";
 
-const sortedPosts = (await getCollection("blog")).sort(
-    (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
-);
+const sortedPosts = await getSortedBlogPosts();
   
 const posts = chunkArray(sortedPosts, 2).slice(0, 1);
 ---
