@@ -4,7 +4,7 @@ import * as fs from "fs";
 import { readFileSync, writeFileSync } from "fs";
 import * as https from "https";
 import { pipeline } from "stream";
-import { Specie, Species } from "./types";
+import { Specie } from "./types";
 
 async function loadData(jsonFile: string, csvFile: string): Promise<{ species: {}; count: number }> {
   let reload = false;
@@ -89,7 +89,7 @@ async function loadCsv(file: string): Promise<{ species: {}; count: number }> {
         // todo Barypeithes-indet-.jpg is empty
         let name = sorted[key][art].name.replace(/\.|[\/]/g, "-");
         const imgName = `${sorted[key][art].art}-${name}.jpg`;
-        const localImg = `./public/assets/arten/${imgName}`;
+        const localImg = `./src/assets/arten/${imgName}`;
         if (fs.existsSync(localImg) === false && img !== undefined) {
           await download(img, localImg);
         }

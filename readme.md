@@ -2,6 +2,8 @@
 
 Built with [Astro](https://astro.build).
 
+https://v2.picocss.com/docs
+
 ## Naturgucker Export for Arten page
 
 ## todo V3
@@ -18,7 +20,7 @@ Built with [Astro](https://astro.build).
 - Biotoptypen
 - warum sind die Arten da?
 - Synökoligien
-- dark mode
+- dark mode toggle
 - css print
 - make pretty Kaefer, InsektenSonstige
 

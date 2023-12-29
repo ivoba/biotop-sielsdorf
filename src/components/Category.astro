@@ -1,6 +1,6 @@
 ---
 import { chunkArray } from "../helper";
-import { Picture } from "@astrojs/image/components";
+import { Picture } from "astro:assets";
 import { Specie } from "../types";
 
 export interface Props {
@@ -10,6 +10,10 @@ export interface Props {
 
 const { title, category } = Astro.props as Props;
 const species = chunkArray(Object.values(category), 4);
+const importImage = async (specie: Specie) => {
+  const img = specie.image ? `../assets/arten/${specie.image}` : `../assets/social.png`;
+  return await import(img);
+};
 ---
 
 <div>
@@ -20,16 +24,13 @@ const species = chunkArray(Object.values(category), 4);
           <article>
             <h6>{specie.trivial}</h6>
             <div class="latin">{specie.art} {specie.name}</div>
-            <Picture
-              src={
-                specie.image ? `/assets/arten/${specie.image}` : `/social.png`
-              }
+             <Picture
+              src={importImage(specie)}
               widths={[228]}
-              aspectRatio={4 / 3}
               sizes="(max-width: 228px) 100vw, 228px"
               formats={["avif", "jpeg", "png", "webp"]}
               alt={specie.trivial}
-            />
+            /> 
           </article>
         ))}
       </div>
@@ -38,7 +39,7 @@ const species = chunkArray(Object.values(category), 4);
 </div>
 
 <style>
-  article {
+  /* article {
     line-height: 1rem;
     max-width: 268px;
   }
@@ -61,10 +62,5 @@ const species = chunkArray(Object.values(category), 4);
   .latin {
     font-size: 0.8rem;
     margin-bottom: 5px;
-  }
-  /* @media print {
-    article {
-        width: 50%;
-    }
-} */
+  } */
 </style>
