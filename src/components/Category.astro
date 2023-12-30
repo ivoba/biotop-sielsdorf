@@ -11,7 +11,9 @@ export interface Props {
 const { title, category } = Astro.props as Props;
 const species = chunkArray(Object.values(category), 4);
 const importImage = async (specie: Specie) => {
-  const img = specie.image ? `../assets/arten/${specie.image}` : `../assets/social.png`;
+  const img = specie.image
+    ? `../assets/arten/${specie.image}`
+    : `../assets/social.png`;
   return await import(img);
 };
 ---
@@ -22,15 +24,19 @@ const importImage = async (specie: Specie) => {
       <div class="grid">
         {chunk.map((specie: Specie) => (
           <article>
-            <h6>{specie.trivial}</h6>
-            <div class="latin">{specie.art} {specie.name}</div>
-             <Picture
-              src={importImage(specie)}
-              widths={[228]}
-              sizes="(max-width: 228px) 100vw, 228px"
-              formats={["avif", "jpeg", "png", "webp"]}
-              alt={specie.trivial}
-            /> 
+            <header>
+              <h5>{specie.trivial}</h5>
+              {specie.art} {specie.name}
+            </header>
+            <main>
+              <Picture
+                src={importImage(specie)}
+                widths={[228]}
+                sizes="(max-width: 228px) 100vw, 228px"
+                formats={["avif", "jpeg", "png", "webp"]}
+                alt={specie.trivial}
+              />
+            </main>
           </article>
         ))}
       </div>
@@ -39,28 +45,21 @@ const importImage = async (specie: Specie) => {
 </div>
 
 <style>
-  /* article {
-    line-height: 1rem;
-    max-width: 268px;
+  article {
+    padding: 0;
+    margin-bottom: 1rem;
+    max-width: 226px;
   }
-  time {
-    margin: 1rem;
-    color: var(--theme-text-lighter);
+  header {
+    min-height: 3rem;
+    padding: 1rem;
+    margin-left: 0;
+    margin-right: 0;
+    min-height: 8.2rem;
   }
-
-  h2 {
-    font-size: 2.25rem;
-    font-weight: 700;
-    color: var(--theme-text);
-    --typography-spacing-vertical: 0.5rem;
-    margin: 1rem;
-  }
-  h6 {
+  h5 {
+    font-size: 1rem;
     margin-bottom: 0;
-    font-size: 0.9rem;
+    overflow-wrap: break-word;
   }
-  .latin {
-    font-size: 0.8rem;
-    margin-bottom: 5px;
-  } */
 </style>
