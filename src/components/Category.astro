@@ -2,6 +2,8 @@
 import { chunkArray } from "../helper";
 import { Picture } from "astro:assets";
 import { Specie } from "../types";
+import defaultImage from "../assets/social.png";
+const images = await import.meta.glob('../assets/arten/*'); 
 
 export interface Props {
   title: string;
@@ -10,16 +12,13 @@ export interface Props {
 
 const { title, category } = Astro.props as Props;
 const species = chunkArray(Object.values(category), 4);
-const importImage = async (specie: Specie) => {
-  const img = specie.image
-    ? `../assets/arten/${specie.image}`
-    : `../assets/social.png`;
-  return await import(img);
-};
+const importImage = (specie: Specie) => specie.image
+    ? images[`../assets/arten/${specie.image}`]()
+    : defaultImage;
 ---
 
 <div>
-  {
+   {
     species.map((chunk) => (
       <div class="grid">
         {chunk.map((specie: Specie) => (
