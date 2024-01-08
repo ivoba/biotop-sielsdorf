@@ -3,10 +3,9 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import BlogPostPreview from "../components/BlogPostPreview.astro";
-import { chunkArray, dateParser } from "../helper";
+import { chunkArray } from "../helper";
 import { Picture } from "astro:assets";
 import sielsdorfQGISImg from "../assets/biotop-sielsdorf-qgis.png";
-import { type CollectionEntry, getCollection } from "astro:content";
 import { getSortedBlogPosts } from "../content/config";
 
 let title = "Biotop Sielsdorf";

@@ -7,9 +7,6 @@ https://v2.picocss.com/docs
 ## Naturgucker Export for Arten page
 
 ## todo V3
-- rename audomoth to vogelstimmen, make redirect
-- move blog posts to content
-- move blog images to src
 - seperate arten json creation and astro pages, run before rendering
 - astro only relies on manifest.json
 - print css
@@ -20,16 +17,14 @@ https://v2.picocss.com/docs
 - Biotoptypen
 - warum sind die Arten da?
 - Synökoligien
-- dark mode toggle
+- dark mode toggle: https://github.com/RWDevelopment/theme_switch/blob/main/index.html
 - css print
 - make pretty Kaefer, InsektenSonstige
 
 ## todo tech
 - rss
-- prettier for astro files
 - paging von posts
-- collaboration with online editor like stackblitz
-- dark mode toggle
+- collaboration with online editor like stackblitzk mode toggle
 - public/assets/arten/Barypeithes-indet-.jpg image is not correctly downloaded
 
 ## Resources
