@@ -248,6 +248,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] };
+"15.09.2023-Sommer.mdx": {
+	id: "15.09.2023-Sommer.mdx";
+  slug: "15092023-sommer";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".mdx"] };
 "22.07.2022-Rettungsaktion.mdx": {
 	id: "22.07.2022-Rettungsaktion.mdx";
   slug: "22072022-rettungsaktion";

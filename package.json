@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "@astrojs/mdx": "^2",
-    "@picocss/pico": "v2.0.0-alpha1",
+    "@picocss/pico": "v2.0.0-rc2",
     "@types/node": "^20",
     "astro": "^4",
     "prettier": "^3",
