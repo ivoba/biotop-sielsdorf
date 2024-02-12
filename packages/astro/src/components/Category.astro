@@ -1,0 +1,64 @@
+---
+import { chunkArray } from "../helper";
+import { Picture } from "astro:assets";
+import { Specie } from "../types";
+import defaultImage from "../assets/social.png";
+const images = await import.meta.glob("../assets/arten/*");
+
+export interface Props {
+  title: string;
+  category: Object;
+}
+
+const { title, category } = Astro.props as Props;
+const species = chunkArray(Object.values(category), 4);
+const importImage = (specie: Specie) =>
+  specie.image ? images[`../assets/arten/${specie.image}`]() : defaultImage;
+---
+
+<div>
+  {
+    species.map((chunk) => (
+      <div class="grid">
+        {chunk.map((specie: Specie) => (
+          <article>
+            <header>
+              <h5>{specie.trivial}</h5>
+              {specie.art} {specie.name}
+            </header>
+            <main>
+              <Picture
+                src={importImage(specie)}
+                widths={[228]}
+                sizes="(max-width: 300px) 100vw, 300px"
+                formats={["avif", "jpeg", "png", "webp"]}
+                alt=`${specie.trivial} (${specie.art} ${specie.name})`
+              />
+            </main>
+          </article>
+        ))}
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  article > header {
+    --pico-block-spacing-vertical: 0.2rem;
+  }
+  article {
+    padding: 0;
+    margin-bottom: 1rem;
+    max-width: 300px;
+  }
+  header {
+    padding: 0.9rem;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  h5 {
+    font-size: 1rem;
+    margin-bottom: 0;
+    overflow-wrap: break-word;
+  }
+</style>

@@ -1,0 +1,75 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Category from '../components/Category.astro';
+import { loadData } from '../loadArtenJson';
+
+const title = 'Arten';
+const description = 'Kartierte Arten im Biotop.';
+const jsonFile =  `./src/data/species.json`;
+
+const species = await loadData(jsonFile);
+console.log(species.species.length);
+
+const artengruppe = Object.keys(species.species).reduce((arten, key) => {
+     arten.push({"name": key, "count": Object.keys(species.species[key]).length});
+    return arten;
+}, []);
+---
+
+<html lang="de">
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+
+	<body class="container">
+		<Header />
+        <main class="container">
+            <section>
+                <h1>{title} ({species.count})</h1>
+                <p class="description">
+                    {description}<br>
+                    Kartiert in <a href="https://naturgucker.de" target="_blank">Naturgucker.de</a> Gebiet <a href="https://naturgucker.de/?gebiet=-912713277" target="_blank">Biotop Hürth Sielsdorf</a>
+                </p>
+            </section>
+            <hr>
+            <article class="arten">
+                    <ul class="arten">
+                        {artengruppe.map(art => (
+                            <li><a href=`#${art.name}`>{art.name} ({art.count})</a></li>
+                        ))}
+                    </ul>
+            </article>
+            <br>
+            <section aria-label="species list">
+                {Object.keys(species.species).map(category => (
+                    <h2 id={category}>{category} ({Object.keys(species.species[category]).length})
+                        <a href={`#${category}`} class="hanchor">
+                            <svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg>
+                        </a>
+                    </h2>
+                    <Category title={category} category={species.species[category]} />
+                    ))}
+            </section>
+        </main>
+        <Footer/>
+	</body>
+</html>
+
+<style>
+.arten {
+    padding: 0;
+}
+.arten a{
+    font-size: 0.7rem;
+}
+ul.arten {
+    margin-bottom: 0;
+}
+ul.arten > li {
+    display: inline;
+    padding: 0 0.5rem;
+    white-space: nowrap;
+}
+</style>

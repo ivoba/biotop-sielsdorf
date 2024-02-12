@@ -1,0 +1,83 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Cards from "../components/Cards.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { Picture } from 'astro:assets';
+import { CollectionEntry } from "astro:content";
+
+export interface Props {
+    post: CollectionEntry<"blog">;
+} 
+
+
+
+const { post } = Astro.props as Props;
+---
+
+<html lang="de">
+  <head>
+    <BaseHead title={post.data.title} description={post.data.description} />
+  </head>
+
+  <body class="container">
+    <Header />
+    <main>
+      <article>
+        <header>
+          {
+            post.data.heroImage && (
+              <Picture
+                src={post.data.heroImage}
+                widths={[200, 400, 640]}
+                sizes="(max-width: 640px) 100vw, 640px"
+                formats={["avif", "jpeg", "png", "webp"]}
+                alt={post.data.title}
+              />
+            )
+          }
+          <h1 class="title">{post.data.title}</h1>
+          <time>{post.data.publishDate.toLocaleDateString("de-DE")}</time>
+        </header>
+        <main>
+          <slot />
+          <Cards observations={post.data.observations} />
+        </main>
+      </article>
+    </main>
+    <Footer />
+    <style>
+      img {
+        width: 50vw;
+        object-fit: cover;
+        object-position: center;
+        margin-top: 2rem;
+        margin-bottom: 4rem;
+      }
+
+      @media (max-width: 50em) {
+        img {
+          height: 260px;
+        }
+      }      
+     
+      header {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+
+        padding-bottom: 2rem;
+        margin-bottom: 2rem;
+        border-bottom: 4px solid var(--theme-divider);
+      }
+
+      .title,
+      time {
+        margin: 0;
+      }      
+    </style>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+---
+import { Picture } from "astro:assets";
+import { CollectionEntry } from "astro:content";
+import { getUrl } from "../content/config";
+
+export interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+const { post } = Astro.props as Props;
+const url = getUrl('blog', post.slug);
+---
+
+<article>
+  <header>
+    <time>{post.data.publishDate.toLocaleDateString("de-DE")}</time>
+    <a href={url}><h2>{post.data.title}</h2></a>
+  </header>
+  {
+    typeof post.data.heroImage === "object" && (
+      <a href={url}>
+        <Picture
+          src={post.data.heroImage}
+          widths={[180, 440]}
+          loading="lazy"
+          sizes="(max-width: 440px) 200w (min-width: 440px) 440w"
+          formats={["avif", "jpeg", "png", "webp"]}
+          alt={post.data.title}
+        />
+      </a>
+    )
+  }
+  <p>{post.data.description}</p>
+  <a href={post.data.title} role="button">mehr</a>
+</article>
+
+<style>
+  img {
+    margin-bottom: 1rem;
+  }
+  article {
+    text-align: center;
+  }
+</style>

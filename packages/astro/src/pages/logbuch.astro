@@ -1,0 +1,52 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import BlogPostPreview from "../components/BlogPostPreview.astro";
+import { chunkArray, dateParser } from "../helper";
+import { type CollectionEntry, getCollection } from "astro:content";
+import { getSortedBlogPosts } from "../content/config";
+
+let title = "Biotop Sielsdorf Logbuch";
+let description = "Logbuch des Biotop Hürth Sielsdorf.";
+
+const sortedPosts = await getSortedBlogPosts();
+
+const posts = chunkArray(sortedPosts, 2);
+---
+
+<html lang="de">
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
+
+  <body class="container">
+    <Header />
+    <main>
+      <section>
+        <h1>{title}</h1>
+        <p class="desc">
+          {description}
+        </p>
+      </section>
+      <section aria-label="Blog post list">
+        {
+          posts.map((chunk) => (
+            <div class="grid">
+              {chunk.map((post) => (
+                <BlogPostPreview post={post} />
+              ))}
+            </div>
+          ))
+        }
+      </section>
+    </main>
+    <Footer />
+
+    <style>
+      p.desc {
+        padding-left: 0;
+      }
+    </style>
+  </body>
+</html>

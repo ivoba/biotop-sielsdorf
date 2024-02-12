@@ -1,0 +1,64 @@
+---
+import { type CollectionEntry } from "astro:content";
+import { chunkArray } from "../helper";
+import { Picture } from 'astro:assets';
+import { Observation } from "../content/config";
+
+export interface Props {
+  observations: Observation[];
+}
+
+const { observations } = Astro.props;
+
+const chunkedObservations = observations ? chunkArray(observations, 2) : [];
+---
+
+<hr />
+<h3>Neueste Beobachtungen:</h3>
+{
+  chunkedObservations.map((observations, index) => (
+    <div class="grid">
+      {observations.map(({ name, latin, img, body }, index) => (
+        <div>
+          <article>
+            <header><h5>{name}</h5>({latin})</header>
+            <main>
+              <Picture
+                src={img}
+                widths={[200, 400, 640]}
+                sizes="(max-width: 640px) 100vw, 640px"
+                formats={["avif", "jpeg", "png", "webp"]}
+                alt={name}
+              />
+            </main>
+            <footer>{body}</footer>
+          </article>
+        </div>
+      ))}
+    </div>
+  ))
+}
+<style>
+  article {
+    padding: 0;
+    margin-bottom: 1rem;
+  }
+  header {
+    min-height: 3rem;
+    padding: 1rem;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  main {
+    margin-bottom: 0.2rem;
+    padding: 1rem;
+  }
+  footer {
+    padding: 1rem;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  h5 {
+    margin-bottom: 0;
+  }
+</style>
