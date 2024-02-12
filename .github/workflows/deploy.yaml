@@ -16,12 +16,17 @@ permissions:
 
 jobs:
   build:
+    defaults:
+      run:
+        working-directory: ./packages/astro
     runs-on: ubuntu-latest
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
       - name: Install, build, and upload your site
         uses: withastro/action@v1
+        with:
+          working-directory: ./packages/astro
 
   deploy:
     needs: build
@@ -33,3 +38,5 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
+        with:
+          working-directory: ./packages/astro

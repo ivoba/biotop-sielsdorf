@@ -1,9 +1,11 @@
 {
-  "prettier.documentSelectors": [
-    "**/*.astro",
-    "**/*.ts"
-  ],
+  "prettier.documentSelectors": ["**/*.astro", "**/*.ts"],
   "[astro]": {
     "editor.defaultFormatter": "astro-build.astro-vscode"
+  },
+  "yaml.schemas": {
+    "https://json.schemastore.org/github-workflow.json": [
+      ".github/workflows/*.{yml,yaml}"
+    ]
   }
 }
