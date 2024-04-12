@@ -37,7 +37,7 @@ const { post } = Astro.props as Props;
             )
           }
           <h1 class="title">{post.data.title}</h1>
-          <time>{post.data.publishDate.toLocaleDateString("de-DE")}</time>
+          <time datetime={post.data.publishDate.toISOString()}>{post.data.publishDate.toLocaleDateString("de-DE")}</time>
         </header>
         <main>
           <slot />

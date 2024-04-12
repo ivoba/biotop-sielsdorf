@@ -2,5 +2,9 @@
   "name": "biotop-sielsdorf",
   "workspaces": [
     "./packages/*"
-  ]
+  ],
+  "scripts": {
+    "transform": "npm --workspace=@biotop-sielsdorf/cli run transform",
+    "start-astro": "npm --workspace=@biotop-sielsdorf/astro start" 
+  }
 }

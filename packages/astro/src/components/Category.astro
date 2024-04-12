@@ -29,6 +29,7 @@ const importImage = (specie: Specie) =>
             <main>
               <Picture
                 src={importImage(specie)}
+                style={specie.image ? null : 'padding: 1.5rem 0.5rem;'}
                 widths={[228]}
                 sizes="(max-width: 300px) 100vw, 300px"
                 formats={["avif", "jpeg", "png", "webp"]}
