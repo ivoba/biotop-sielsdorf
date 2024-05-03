@@ -19,7 +19,7 @@ const chunkedObservations = observations ? chunkArray(observations, 2) : [];
   chunkedObservations.map((observations, index) => (
     <div class="grid">
       {observations.map(({ name, latin, img, body }, index) => (
-        <div>
+        <div class="card">
           <article>
             <header><h5>{name}</h5>({latin})</header>
             <main>
@@ -29,6 +29,7 @@ const chunkedObservations = observations ? chunkArray(observations, 2) : [];
                 sizes="(max-width: 640px) 100vw, 640px"
                 formats={["avif", "jpeg", "png", "webp"]}
                 alt={name}
+                loading="lazy"
               />
             </main>
             <footer>{body}</footer>
@@ -39,9 +40,11 @@ const chunkedObservations = observations ? chunkArray(observations, 2) : [];
   ))
 }
 <style>
+  .card {
+    margin-bottom: 2rem;
+  }
   article {
     padding: 0;
-    margin-bottom: 1rem;
   }
   header {
     min-height: 3rem;
@@ -55,6 +58,7 @@ const chunkedObservations = observations ? chunkArray(observations, 2) : [];
   }
   footer {
     padding: 1rem;
+    margin-top: 0;
     margin-left: 0;
     margin-right: 0;
   }

@@ -29,6 +29,7 @@ const { post } = Astro.props as Props;
             post.data.heroImage && (
               <Picture
                 src={post.data.heroImage}
+                loading="eager"
                 widths={[200, 400, 640]}
                 sizes="(max-width: 640px) 100vw, 640px"
                 formats={["avif", "jpeg", "png", "webp"]}

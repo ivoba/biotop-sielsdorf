@@ -136,6 +136,13 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"blog": {
+"01.05.2024-Sturmschäden.mdx": {
+	id: "01.05.2024-Sturmschäden.mdx";
+  slug: "01052024-sturmschäden";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".mdx"] };
 "04.10.2022-Herbstbeginn.mdx": {
 	id: "04.10.2022-Herbstbeginn.mdx";
   slug: "04102022-herbstbeginn";

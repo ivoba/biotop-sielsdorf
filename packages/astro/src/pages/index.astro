@@ -32,8 +32,9 @@ const posts = chunkArray(sortedPosts, 2).slice(0, 1);
            Betreut vom <a href="https://bund-rhein-erft.de/huerth">BUND Hürth</a
           >
         </p>
-        <Picture
+          <Picture
           src={sielsdorfQGISImg}
+          loading="eager"
           widths={[200, 400, 800]}
           formats={["avif", "jpeg", "png", "webp"]}
           alt="Biotop Sielsdorf QGIS"
