@@ -1,9 +1,7 @@
 import { getImage } from "astro:assets";
 import {
-  CollectionEntry,
   defineCollection,
   getCollection,
-  reference,
   z,
   ImageFunction
 } from "astro:content";
