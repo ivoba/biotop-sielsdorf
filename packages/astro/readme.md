@@ -1,15 +1,8 @@
 # Biotop Sielsdorf
 
-Built with [Astro](https://astro.build).
-
-https://v2.picocss.com/docs
+Built with [Astro](https://astro.build) & https://v2.picocss.com/docs
 
 ## Naturgucker Export for Arten page
-
-## todo V3
-- seperate arten json creation and astro pages, run before rendering
-- astro only relies on manifest.json
-- print css
 
 ## todo content
 - Remove the last semicolon for error: Invalid Record Length: expect 36, got 37
