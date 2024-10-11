@@ -5,8 +5,11 @@ Built with [Astro](https://astro.build) & https://v2.picocss.com/docs
 ## Naturgucker Export for Arten page
 
 ## todo content
+- use system fonts
 - Remove the last semicolon for error: Invalid Record Length: expect 36, got 37
 - Karte
+- Bilder in LogBuch gleichziehen, size 600px, default image wenn no image
+- responsive fixen
 - Biotoptypen
 - warum sind die Arten da?
 - Synökoligien

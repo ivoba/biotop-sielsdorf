@@ -8,7 +8,7 @@ export interface Props {
 }
 
 const { post } = Astro.props as Props;
-const url = getUrl('blog', post.slug);
+const url = getUrl("blog", post.slug);
 ---
 
 <article>
@@ -21,9 +21,9 @@ const url = getUrl('blog', post.slug);
       <a href={url}>
         <Picture
           src={post.data.heroImage}
-          widths={[180, 440]}
+          widths={[180, 520]}
           loading="lazy"
-          sizes="(max-width: 440px) 200w (min-width: 440px) 440w"
+          sizes="(max-width: 520px) 200w (min-width: 440px) 440w"
           formats={["avif", "jpeg", "png", "webp"]}
           alt={post.data.title}
         />
@@ -40,5 +40,12 @@ const url = getUrl('blog', post.slug);
   }
   article {
     text-align: center;
+    grid-column: span 1;
+  }
+  /* apply max-width only when there is one column */
+  @media (grid-template-columns: 2fr) {
+    article {
+      max-width: 50%;
+    }
   }
 </style>

@@ -179,8 +179,9 @@ const currentPath = pathname.slice(1); // remove the first "/"
         >
       </li>
       <li>
-        <a href="/vogelstimmen" class={currentPath === "vogelstimmen" ? "active" : ""}
-          >Vogelstimmen</a
+        <a
+          href="/vogelstimmen"
+          class={currentPath === "vogelstimmen" ? "active" : ""}>Vogelstimmen</a
         >
       </li>
       <li>
@@ -207,6 +208,11 @@ const currentPath = pathname.slice(1); // remove the first "/"
   @media (min-width: 1200px) {
     body > header {
       --block-spacing-vertical: calc(var(--spacing) * 0.5);
+    }
+  }
+  @media (max-width: 700px) {
+    nav{
+      display: unset;
     }
   }
   a:hover,
