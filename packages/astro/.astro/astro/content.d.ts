@@ -172,6 +172,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] };
+"06.03.2025-Freiwilligeneinsatz.mdx": {
+	id: "06.03.2025-Freiwilligeneinsatz.mdx";
+  slug: "06032025-freiwilligeneinsatz";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".mdx"] };
 "06.06.2022-Eschen-ahorn.mdx": {
 	id: "06.06.2022-Eschen-ahorn.mdx";
   slug: "06062022-eschen-ahorn";

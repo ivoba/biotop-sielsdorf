@@ -6,7 +6,7 @@
     "csv": "^6.3.5"
   },
   "engines": {
-    "node": ">=20.6.0"
+    "node": ">=22.0.0"
   },
   "scripts": {
     "transform": "node --env-file=.env index.js transform"

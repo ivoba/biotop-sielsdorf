@@ -40,7 +40,11 @@ const { post } = Astro.props as Props;
         </header>
         <main>
           <slot />
-          <Cards observations={post.data.observations} />
+          {
+            post.data.observations && (
+              <Cards observations={post.data.observations} />
+            )
+          }
         </main>
       </article>
     </main>
