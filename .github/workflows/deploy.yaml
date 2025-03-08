@@ -40,4 +40,4 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
         with:
-          working-directory: ./packages/astro
+          working-directory: ./packages/astro # this yields: Warning: Unexpected input(s) 'working-directory', valid inputs are ['token', 'timeout', 'error_count', 'reporting_interval', 'artifact_name', 'preview']
