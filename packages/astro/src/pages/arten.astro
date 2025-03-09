@@ -43,13 +43,13 @@ const artenGruppenMapper = (artengruppe: string): string => artengruppeMap.has(a
                 </p>
             </section>
             <hr>
-            <article class="arten">
-                    <ul class="arten">
+            <nav class="species-nav">
+                    <ul>
                         {artengruppe.map(art => (
                             <li><a href=`#${art.name}`>{artenGruppenMapper(art.name)} ({art.count})</a></li>
                         ))}
                     </ul>
-            </article>
+            </nav>
             <br>
             <section aria-label="species list">
                 {Object.keys(species.species).map(category => (
@@ -67,18 +67,38 @@ const artenGruppenMapper = (artengruppe: string): string => artengruppeMap.has(a
 </html>
 
 <style>
-.arten {
+.species-nav {
+    padding: 0.75rem;
+    background-color: var(--pico-card-background-color);
+    border: var(--pico-border-width) solid var(--pico-muted-border-color);
+    border-radius: var(--pico-border-radius);
+    box-shadow: var(--pico-card-box-shadow);
+    margin-bottom: var(--pico-spacing);
+}
+.species-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    justify-content: flex-start;
+}
+.species-nav li {
+    margin: 0;
     padding: 0;
 }
-.arten a{
+.species-nav a {
+    display: inline-block;
     font-size: 0.7rem;
+    text-decoration: none;
+    padding: 0.2rem 0.5rem;
+    border-radius: calc(var(--pico-border-radius) * 0.75);
+    color: var(--pico-muted-color);
+    transition: all var(--pico-transition);
 }
-ul.arten {
-    margin-bottom: 0;
-}
-ul.arten > li {
-    display: inline;
-    padding: 0 0.5rem;
-    white-space: nowrap;
+.species-nav a:hover {
+    background: var(--pico-primary-background);
+    color: var(--pico-primary);
 }
 </style>
